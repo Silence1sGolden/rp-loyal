@@ -1,0 +1,255 @@
+@use '../../styles/constant.scss';
+
+.sidebar {
+  z-index: 1;
+  position: fixed;
+  inset: 0px;
+  inline-size: 100vw;
+  block-size: auto;
+  min-block-size: 3em;
+  max-block-size: 50px;
+
+  display: flex;
+  justify-content: center;
+
+  background-color: constant.$LIGHT_GRAY;
+  font-size: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
+  transform: translateY(-50px);
+  transition: transform 0.5s;
+
+  .helper {
+    position: absolute;
+    left: 48vw;
+    bottom: 0px;
+    font-size: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    user-select: none;
+
+    transition:
+      transform 0.3s,
+      opacity 0.3s;
+
+    @media (width < 1024px) {
+      inline-size: 50px;
+      block-size: 50px;
+      left: auto;
+      right: 0px;
+      top: 100%;
+      background-color: constant.$LIGHT_GRAY;
+      font-size: 20px;
+      text-align: center;
+    }
+  }
+
+  &:hover {
+    transform: translateY(0px);
+    .helper {
+      position: absolute;
+      transform: rotateZ(90deg);
+      opacity: 0;
+      font-size: 10px;
+    }
+  }
+
+  .nav {
+    inline-size: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    .link {
+      position: relative;
+      inline-size: auto;
+      color: constant.$WHITE;
+      font-size: inherit;
+      font-family: constant.$MAIN_FONT;
+      cursor: pointer;
+      transition: text-shadow 0.3s;
+      padding: 10px 20px;
+
+      &:hover {
+        text-shadow: 0px 0px 5px constant.$WHITE;
+
+        &::after,
+        &::before {
+          box-sizing: content-box;
+          content: '';
+          position: absolute;
+          inset: 0px;
+          color: constant.$WHITE;
+          font-size: 10px;
+          font-family: inherit;
+          letter-spacing: 150%;
+          transition: content 0.3s;
+          text-shadow: none;
+          filter: blur(0.5);
+        }
+
+        &::after {
+          animation: mad_symbol_v1 3s infinite ease-in-out alternate-reverse;
+        }
+        &::before {
+          animation: mad_symbol_v2 3s infinite ease-in-out alternate-reverse;
+        }
+      }
+
+      &_active {
+        text-shadow: 0px 0px 5px constant.$WHITE;
+        color: rgba(constant.$WHITE, $alpha: 0.5);
+        cursor: default;
+        pointer-events: none;
+
+        @media (width < 1024px) {
+          &::after,
+          &::before {
+            box-sizing: content-box;
+            content: '';
+            position: absolute;
+            inset: 0px;
+            color: constant.$WHITE;
+            font-size: 10px;
+            font-family: inherit;
+            letter-spacing: 150%;
+            transition: content 0.3s;
+            text-shadow: none;
+            filter: blur(0.5);
+          }
+
+          &::after {
+            animation: mad_symbol_v1 3s infinite ease-in-out alternate-reverse;
+          }
+          &::before {
+            animation: mad_symbol_v2 3s infinite ease-in-out alternate-reverse;
+          }
+        }
+      }
+    }
+  }
+}
+
+@keyframes shake {
+  from {
+    transform: translate(2px, -2px);
+  }
+
+  25% {
+    transform: translate(0px, 2px);
+  }
+
+  50% {
+    transform: translate(-2px, 0px);
+  }
+
+  50% {
+    transform: translate(0px, -2px);
+  }
+
+  to {
+    transform: translate(-2px, 2px);
+  }
+}
+
+@keyframes mad_symbol_v1 {
+  0% {
+    content: '+';
+    opacity: 0.2;
+    transform: translate(0px, 0px);
+  }
+  10% {
+    content: '-';
+    opacity: 1;
+    transform: translate(90px, 24px);
+  }
+  20% {
+    content: '%';
+    transform: translate(40px, 26px);
+  }
+  30% {
+    content: '@';
+    transform: translate(49px, 5px);
+  }
+  40% {
+    content: '!';
+    transform: translate(17px, 16px);
+  }
+  50% {
+    content: '*';
+    transform: translate(93px, 20px);
+  }
+  60% {
+    content: '^';
+    transform: translate(64px, 9px);
+  }
+  70% {
+    content: '$';
+    transform: translate(74px, 1px);
+  }
+  80% {
+    content: '?';
+    transform: translate(81px, 25px);
+  }
+  90% {
+    content: '/';
+    opacity: 1;
+    transform: translate(15px, 10px);
+  }
+  100% {
+    content: '=';
+    opacity: 0.2;
+    transform: translate(4px, 34px);
+  }
+}
+
+@keyframes mad_symbol_v2 {
+  0% {
+    content: '2';
+    opacity: 0.2;
+    transform: translate(0px, 0px);
+  }
+  10% {
+    content: '5';
+    opacity: 1;
+    transform: translate(64px, 12px);
+  }
+  20% {
+    content: '8';
+    transform: translate(12px, 4px);
+  }
+  30% {
+    content: '0';
+    transform: translate(87px, 26px);
+  }
+  40% {
+    content: '1';
+    transform: translate(51px, 5px);
+  }
+  50% {
+    content: 'BOO';
+    transform: translate(16px, 3px);
+  }
+  60% {
+    content: 'xaxa';
+    transform: translate(74px, 19px);
+  }
+  70% {
+    content: '1';
+    transform: translate(29px, 1px);
+  }
+  80% {
+    content: '666';
+    transform: translate(75px, 21px);
+  }
+  90% {
+    content: '0';
+    opacity: 1;
+    transform: translate(58px, 9px);
+  }
+  100% {
+    content: '4';
+    opacity: 0.2;
+    transform: translate(23px, 25px);
+  }
+}

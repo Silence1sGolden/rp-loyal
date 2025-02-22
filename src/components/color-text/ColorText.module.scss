@@ -1,0 +1,38 @@
+@use '../../styles/constant.scss';
+
+.h1,
+.span {
+  font-family: constant.$MAIN_FONT;
+  font-size: inherit;
+  font-weight: bold;
+  color: constant.$WHITE;
+  text-decoration: none;
+  text-align: center;
+}
+
+.h1 {
+  position: relative;
+  inline-size: 100%;
+  align-self: baseline;
+
+  @media (width < 1024px) {
+    inline-size: 100%;
+    line-height: 150%;
+  }
+
+  @media (width <= 375px) {
+    inline-size: 100%;
+    line-height: 200%;
+  }
+}
+
+.span {
+  text-decoration: underline;
+}
+
+.letter {
+  color: rgba(constant.$WHITE, $alpha: 0.6);
+  transition:
+    color 0.3s,
+    text-shadow 0.3s;
+}

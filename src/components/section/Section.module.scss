@@ -1,0 +1,56 @@
+@use '../../styles/constant.scss';
+
+.section {
+  position: relative;
+  inline-size: 100%;
+  block-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 15px;
+  padding: 0.5em;
+  background-color: constant.$GRAY;
+  border-radius: 0.7em;
+
+  // .after,
+  // .before {
+  //   box-sizing: content-box;
+  //   content: '';
+  //   position: absolute;
+  //   top: 50%;
+  //   left: 50%;
+  //   block-size: 100%;
+  //   inline-size: 100%;
+  //   translate: -50% -50%;
+  //   border-radius: 0.7em;
+  //   padding: 3px;
+  //   z-index: -1;
+
+  //   background-image: conic-gradient(
+  //     from 0deg,
+  //     constant.$BLUE 25%,
+  //     transparent 35%
+  //   );
+  // }
+
+  // .before {
+  //   filter: blur(0.5rem);
+  //   opacity: 0.5;
+  // }
+
+  .h2 {
+    text-align: center;
+    font-size: clamp(1.25rem, 0.9859rem + 1.1268vw, 2rem);
+    color: constant.$BLUE;
+    text-shadow: 0px 0px 15px constant.$BLUE;
+  }
+
+  .p {
+    block-size: 100%;
+    text-align: center;
+    font-size: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
+    color: constant.$BLUE;
+    text-shadow: 0px 0px 15px constant.$BLUE;
+  }
+}

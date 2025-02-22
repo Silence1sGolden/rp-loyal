@@ -1,0 +1,17 @@
+@use '../../styles/constant.scss';
+
+.container {
+  inline-size: 100%;
+  block-size: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  font-size: clamp(2.625rem, 2.0552rem + 2.4309vw, 4rem);
+  color: constant.$WHITE;
+
+  @media (width < 1024px) {
+    block-size: 100svh;
+  }
+}

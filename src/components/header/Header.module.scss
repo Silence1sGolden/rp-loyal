@@ -1,0 +1,45 @@
+@use '../../styles/constant.scss';
+
+.header {
+  position: sticky;
+  z-index: 1;
+  inset: 0;
+  inline-size: 100%;
+  block-size: auto;
+  min-block-size: 2em;
+  max-block-size: 3em;
+  background-color: constant.$LIGHT_GRAY;
+
+  display: flex;
+  flex-direction: row;
+  justify-content: space-around;
+  align-items: center;
+
+  font-size: clamp(1rem, 0.8239rem + 0.7512vw, 1.5rem);
+
+  .nav {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 5%;
+
+    .link {
+      font-family: constant.$MAIN_FONT;
+      font-size: inherit;
+      font-weight: 500;
+      font-style: normal;
+      color: constant.$BLACK;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+        cursor: pointer;
+      }
+
+      &:focus-visible {
+        outline: 1px solid constant.$WHITE;
+        outline-offset: 2px;
+      }
+    }
+  }
+}
