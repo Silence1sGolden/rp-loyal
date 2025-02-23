@@ -1,7 +1,7 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { User } from '../utils/types';
 import {
-  getUserApi,
+  checkUserApi,
   loginApi,
   LoginUserData,
   RegisterUserData,
@@ -33,7 +33,7 @@ export const regUser = createAsyncThunk(
   (user: RegisterUserData) => regUserApi(user)
 );
 
-export const getUserData = createAsyncThunk('user/get', getUserApi);
+export const getUserData = createAsyncThunk('user/get', checkUserApi);
 
 export const checkUser = createAsyncThunk('user/check', (_, { dispatch }) => {
   // замена cookie

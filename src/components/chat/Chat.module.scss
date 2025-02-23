@@ -1,0 +1,78 @@
+@use '../../styles/constant.scss';
+
+.chat {
+  inline-size: 100%;
+  block-size: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+
+  border: 1px solid constant.$LIGHT_GRAY;
+  padding: 0.5em;
+
+  color: constant.$WHITE;
+  font-family: constant.$MAIN_FONT;
+
+  .container,
+  .container_fake {
+    inline-size: auto;
+    max-inline-size: 80%;
+    block-size: auto;
+
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+
+    .user {
+      font-size: 0.6em;
+    }
+
+    .msg {
+      font-size: 0.8em;
+    }
+
+    .time {
+      font-size: 0.5em;
+      font-weight: 400;
+      filter: brightness(0.5);
+    }
+
+    &_reverse {
+      align-self: flex-end;
+    }
+
+    @media (width < 1280px) {
+      max-inline-size: 100%;
+    }
+  }
+
+  .container_fake {
+    block-size: 100%;
+    max-block-size: 6em;
+
+    .user_fake {
+      block-size: 100%;
+      max-block-size: 1em;
+      background-color: constant.$LIGHT_GRAY;
+    }
+
+    .msg_fake {
+      block-size: 100%;
+      max-block-size: 2em;
+      background-color: constant.$LIGHT_GRAY;
+    }
+
+    .data_fake {
+      block-size: 100%;
+      max-block-size: 0.8em;
+      background-color: constant.$LIGHT_GRAY;
+    }
+  }
+
+  @media (width < 1280px) {
+    font-size: clamp(0.875rem, 0.6678rem + 0.884vw, 1.375rem);
+    gap: 1em;
+    block-size: 100dvh;
+  }
+}

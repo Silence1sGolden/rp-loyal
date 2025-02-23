@@ -10,7 +10,8 @@ import { ResetPassword } from './pages/reset-password/ResetPassword';
 import { Sidebar } from './components/sidebar/Sidebar';
 import { useSelector } from './store/store';
 import { getUser } from './slices/userSlice';
-import { Chat } from './pages/chat/Chat';
+import { ChatPage } from './pages/chat/ChatPage';
+import { Chat } from './components/chat/Chat';
 
 function App() {
   const user = useSelector(getUser);
@@ -32,10 +33,20 @@ function App() {
           path="/chat"
           element={
             <ProtectRoute>
-              <Chat />
+              <ChatPage />
             </ProtectRoute>
           }
-        />
+        >
+          <Route
+            path=":id"
+            element={
+              <ProtectRoute>
+                <Chat />
+              </ProtectRoute>
+            }
+          />
+        </Route>
+
         <Route
           path="/login"
           element={

@@ -1,5 +1,7 @@
+import { Message } from '../slices/msgSlice';
+import { CHATS, LESBEK_CHAT, MAX_JACY_CHAT, PUPPY_CHAT } from './constants';
 import { User } from './types';
-import { getValueBetween, timeout, USER } from './utils';
+import { getValueBetween, timeout } from './utils';
 
 export interface UserResponse {
   user: User;
@@ -21,26 +23,128 @@ export interface RegisterUserData extends LoginUserData {
   name: string;
 }
 
-// export async function checkUserApi(): Promise<Response<null>> {
-//   const request = await timeout(getValueBetween(1000, 5000), {
-//     status: true,
-//     data: null,
-//   });
-//   return request;
-// }
-
-export function getUserApi(): Promise<Response<UserResponse>> {
-  return timeout(getValueBetween(1000, 5000), USER);
+export function checkUserApi(): Promise<Response<UserResponse>> {
+  if (!localStorage.getItem('rployal')) {
+    return Promise.reject('Время куки истекло.');
+  }
+  const data = localStorage.getItem('rployal')!.split(':');
+  return timeout(getValueBetween(1000, 5000), {
+    status: true,
+    data: {
+      user: {
+        email: data[0],
+        username: data[1],
+        rating: 0,
+        profileIMG:
+          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
+      },
+      refreshToken: '123',
+      accessToken: '123',
+    },
+  });
 }
 
 export function loginApi(user: LoginUserData): Promise<Response<UserResponse>> {
-  console.log(user);
-  return timeout(getValueBetween(1000, 5000), USER);
+  if (!localStorage.getItem('rployal')) {
+    return Promise.reject('Пользователя с такими данными не существует.');
+  }
+
+  const data = localStorage.getItem('rployal')!.split(':');
+
+  if (user.email !== data[0]) {
+    return Promise.reject('Пользователя с такой почтой не существует.');
+  }
+
+  if (user.password !== data[2]) {
+    return Promise.reject('Неверный пароль.');
+  }
+
+  return timeout(getValueBetween(1000, 5000), {
+    status: true,
+    data: {
+      user: {
+        email: data[0],
+        username: data[1],
+        rating: 0,
+        profileIMG:
+          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
+      },
+      accessToken: Date.now().toString(),
+      refreshToken: Date.now().toString(),
+    },
+  });
+}
+
+export interface getChatResponse {
+  id: string;
+  messages: Message[];
+}
+
+export interface getChatsResponse {
+  chats: Chat[];
+}
+
+export interface Chat {
+  id: string;
+  title: string;
+  img: string;
+}
+
+export function getChatApi(id: string): Promise<Response<getChatResponse>> {
+  let messages: Message[];
+  switch (id) {
+    case '1': {
+      messages = PUPPY_CHAT;
+      break;
+    }
+    case '2': {
+      messages = LESBEK_CHAT;
+      break;
+    }
+    case '3': {
+      messages = MAX_JACY_CHAT;
+      break;
+    }
+  }
+  return timeout(getValueBetween(1000, 5000), {
+    status: true,
+    data: {
+      id: id,
+      messages: messages!,
+    },
+  });
+}
+
+export function getChatsApi(): Promise<Response<getChatsResponse>> {
+  return timeout(getValueBetween(1000, 5000), {
+    status: true,
+    data: {
+      chats: CHATS,
+    },
+  });
 }
 
 export function regUserApi(
   user: RegisterUserData
 ): Promise<Response<UserResponse>> {
-  console.log(user);
-  return timeout(getValueBetween(1000, 5000), USER);
+  const { email, name, password } = user;
+  try {
+    localStorage.setItem('rployal', `${email}:${name}:${password}`);
+  } catch (err) {
+    return Promise.reject(err);
+  }
+  return timeout(getValueBetween(1000, 5000), {
+    status: true,
+    data: {
+      user: {
+        email: email,
+        username: name,
+        rating: 0,
+        profileIMG:
+          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
+      },
+      accessToken: Date.now().toString(),
+      refreshToken: Date.now().toString(),
+    },
+  });
 }

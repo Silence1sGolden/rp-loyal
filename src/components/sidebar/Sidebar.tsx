@@ -17,7 +17,10 @@ export function Sidebar(): ReactElement {
         </Link>
         <Link
           to="/chat"
-          className={clsx(style.link, path === '/chat' && style.link_active)}
+          className={clsx(
+            style.link,
+            path.startsWith('/chat') && style.link_active
+          )}
         >
           Chat
         </Link>

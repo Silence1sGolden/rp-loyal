@@ -37,7 +37,10 @@ export function RegisterUI({ onSubmit }: RegisterUIProps): ReactElement {
       (e.target as HTMLFormElement).querySelector(
         'input[name="password"]'
       ) as HTMLInputElement
-    ).value;
+    ).value
+      .split('')
+      .map((item) => item.charCodeAt(0))
+      .join('');
     onSubmit({ name, email, password });
   };
 

@@ -5,9 +5,11 @@ import {
   useDispatch as disp,
   TypedUseSelectorHook,
 } from 'react-redux';
+import { MSGReducer } from '../slices/msgSlice';
 
 const rootSlice = {
   user: UserReducer,
+  msg: MSGReducer,
 };
 
 export const store = configureStore({
