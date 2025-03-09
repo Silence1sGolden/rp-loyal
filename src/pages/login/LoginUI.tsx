@@ -1,7 +1,7 @@
 import { ReactElement, SyntheticEvent, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import style from './Login.module.scss';
-import { ColorText } from '../../components/color-text/ColorText';
+import { ColorText } from '../../components/ui/components/ColoredText/ColoredText';
 import { Input } from '../../components/input/Input';
 import { LoginUserData } from '../../utils/multi-api';
 

@@ -1,0 +1,44 @@
+@use '@/styles/constant.scss' as c;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  box-sizing: border-box;
+}
+
+.button {
+  inline-size: 100%;
+  padding-block: 10px;
+  padding-inline: 20px;
+
+  color: c.$WHITE;
+  background-color: c.$DARK;
+  border: 1px solid c.$WHITE;
+  border-radius: 5px;
+  box-shadow: c.$EFFECT_S;
+
+  transition:
+    color 0.4s,
+    background-color 0.4s,
+    border 0.4s,
+    box-shadow 0.4s;
+
+  font-size: c.$H3;
+  font-family: c.$MAIN_FONT;
+  font-weight: c.$MEDIUM;
+
+  &:hover,
+  &:active {
+    color: c.$BLACK;
+    background-color: c.$WHITE;
+    cursor: pointer;
+  }
+
+  &:disabled {
+    color: c.$LIGHT_GRAY;
+    border: 1px solid c.$LIGHT_GRAY;
+    box-shadow: none;
+    pointer-events: none;
+  }
+}

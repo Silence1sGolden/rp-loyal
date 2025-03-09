@@ -1,0 +1,41 @@
+@use '@/styles/constant.scss' as c;
+
+* {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+  box-sizing: border-box;
+}
+
+.div {
+  display: flex;
+  inline-size: auto;
+  padding-block: 5px;
+  padding-inline: 10px;
+  background-color: c.$WHITE;
+  border: 1px solid c.$WHITE;
+  border-radius: 100px;
+
+  transition:
+    background-color 0.4s,
+    box-shadow 0.4s;
+
+  .p {
+    font-size: c.$TEXT_SIZE;
+    font-family: c.$MAIN_FONT;
+    font-weight: c.$LIGHT;
+    color: c.$BLACK;
+    transition: color 0.4s;
+  }
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    box-shadow: c.$EFFECT_S;
+    background-color: c.$DARK;
+
+    .p {
+      color: c.$WHITE;
+    }
+  }
+}

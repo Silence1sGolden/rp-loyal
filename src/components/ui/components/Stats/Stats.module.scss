@@ -1,0 +1,32 @@
+@use '@/styles/constant.scss' as c;
+
+.stats {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+
+  .elem {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    gap: 10px;
+
+    .title,
+    .text {
+      font-family: c.$MAIN_FONT;
+    }
+
+    .title {
+      font-size: c.$H2;
+      font-weight: c.$MEDIUM;
+      color: c.$WHITE;
+    }
+
+    .text {
+      font-size: c.$SUB_MAX;
+      font-weight: c.$LIGHT;
+      color: c.$LIGHTER_GRAY;
+    }
+  }
+}

@@ -1,0 +1,45 @@
+@use '@/styles/constant.scss' as c;
+
+.div {
+  inline-size: 100%;
+  block-size: auto;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+
+  cursor: pointer;
+  transition: filter 0.3s;
+
+  &:hover,
+  &:active {
+    filter: drop-shadow(c.$EFFECT_S);
+  }
+
+  .rect {
+    fill: rgba(c.$WHITE, $alpha: 0);
+    transition: fill 0.2s;
+
+    &_active {
+      fill: c.$WHITE;
+    }
+  }
+
+  .path {
+    opacity: 0;
+    transition:
+      opacity 0.2s,
+      box-shadow 0.4s;
+
+    &_active {
+      opacity: 1;
+    }
+  }
+
+  .h2 {
+    font-size: c.$H2;
+    font-family: c.$MAIN_FONT;
+    font-weight: c.$MEDIUM;
+    color: c.$WHITE;
+  }
+}

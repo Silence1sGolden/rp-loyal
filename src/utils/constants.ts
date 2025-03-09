@@ -10,7 +10,6 @@ export const USER: Response<UserResponse> = {
       email: 'my-email@mute.ru',
       profileIMG:
         'https://i.pinimg.com/736x/3f/a5/4c/3fa54c227e043ef7d869319567c7ae49.jpg',
-      rating: 4.5,
     },
     accessToken: createToken(),
     refreshToken: createToken(),

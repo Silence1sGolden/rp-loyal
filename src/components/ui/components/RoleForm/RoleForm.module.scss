@@ -1,0 +1,55 @@
+@use '@/styles/constant.scss' as c;
+
+.container {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  align-items: center;
+
+  transition: filter 0.3s;
+
+  &:hover,
+  &:active {
+    cursor: pointer;
+    filter: drop-shadow(c.$EFFECT_S);
+  }
+
+  .avatar {
+    min-inline-size: 45px;
+    min-block-size: 45px;
+    inline-size: 45px;
+    block-size: 45px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100px;
+    border: 1px solid c.$GRAY;
+  }
+
+  .textContainer {
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    .title {
+      font-family: c.$MAIN_FONT;
+      font-size: c.$H3;
+      font-weight: c.$MEDIUM;
+      color: c.$WHITE;
+      line-height: 100%;
+    }
+
+    .subtitle {
+      inline-size: auto;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+
+      font-family: c.$MAIN_FONT;
+      font-size: c.$TEXT_SIZE;
+      font-weight: c.$LIGHT;
+      color: c.$LIGHTER_GRAY;
+      line-height: 100%;
+    }
+  }
+}

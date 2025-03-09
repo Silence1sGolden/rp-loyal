@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Piazzolla:ital,opsz,wght@0,8..30,100..900;1,8..30,100..900&display=swap');
+@font-face {
+  font-family: 'Piazzolla', serif;
+  src:
+    url('./assets/fonts/Piazzolla_18pt-Bold.woff2') format('woff2'),
+    url('./assets/fonts/Piazzolla_18pt-Bold.ttf') format('ttf');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Piazzolla', serif;
+  src:
+    url('./assets/fonts/Piazzolla_18pt-ExtraLight.woff2') format('woff2'),
+    url('./assets/fonts/Piazzolla_18pt-ExtraLight.ttf') format('ttf');
+  font-weight: 200;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Piazzolla', serif;
+  src:
+    url('./assets/fonts/Piazzolla_18pt-Medium.woff2') format('woff2'),
+    url('./assets/fonts/Piazzolla_24pt-Medium.ttf') format('ttf');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}

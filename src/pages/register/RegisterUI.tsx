@@ -1,7 +1,7 @@
 import { ReactElement, SyntheticEvent, useRef, useState } from 'react';
 import { Link } from 'react-router';
 import style from './Register.module.scss';
-import { ColorText } from '../../components/color-text/ColorText';
+import { ColorText } from '../../components/ui/components/ColoredText/ColoredText';
 import { Input } from '../../components/input/Input';
 import { RegisterUserData } from '../../utils/multi-api';
 

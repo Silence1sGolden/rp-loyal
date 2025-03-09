@@ -1,0 +1,66 @@
+@use '@/styles/constant.scss' as c;
+
+.container {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  min-block-size: 45px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    left: 0px;
+    top: calc(100% + 1px);
+    inline-size: 100%;
+    block-size: 1px;
+    background-color: c.$GRAY;
+  }
+
+  .svg {
+    transition: filter 0.3s;
+
+    &:hover,
+    &:active {
+      cursor: pointer;
+      filter: drop-shadow(c.$EFFECT_S);
+    }
+  }
+
+  .title {
+    inline-size: 100%;
+
+    font-family: c.$MAIN_FONT;
+    font-size: c.$H1;
+    font-weight: c.$MEDIUM;
+    text-align: center;
+    color: c.$WHITE;
+  }
+
+  .titleContainer {
+    inline-size: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+
+    .title {
+      inline-size: auto;
+
+      font-family: c.$MAIN_FONT;
+      font-size: c.$H1;
+      font-weight: c.$MEDIUM;
+      text-align: left;
+      color: c.$WHITE;
+    }
+
+    .image {
+      inline-size: 45px;
+      block-size: 45px;
+      object-fit: cover;
+      object-position: center;
+      border-radius: 100px;
+      border: 1px solid c.$DARK;
+      box-shadow: c.$EFFECT_S;
+    }
+  }
+}

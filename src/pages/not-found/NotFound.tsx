@@ -1,5 +1,5 @@
 import { ReactElement } from 'react';
-import { ColorText } from '../../components/color-text/ColorText';
+import { ColorText } from '../../components/ui/components/ColoredText/ColoredText';
 
 export function NotFound(): ReactElement {
   return (

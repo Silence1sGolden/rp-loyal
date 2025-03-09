@@ -1,0 +1,38 @@
+@use '@/styles/constant.scss' as c;
+
+.container {
+  inline-size: 100%;
+
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 20px;
+
+  .avatar {
+    inline-size: 100px;
+    block-size: 100px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100px;
+  }
+
+  .textContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .title {
+      font-family: c.$MAIN_FONT;
+      font-size: c.$H1;
+      font-weight: c.$MEDIUM;
+      color: c.$WHITE;
+    }
+
+    .subtitle {
+      font-family: c.$MAIN_FONT;
+      font-size: c.$TEXT_SIZE;
+      font-weight: c.$LIGHT;
+      color: c.$LIGHTER_GRAY;
+    }
+  }
+}

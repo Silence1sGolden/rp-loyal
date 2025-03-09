@@ -10,12 +10,12 @@ import {
   UserResponse,
 } from '../utils/multi-api';
 
-interface UserState {
+export type UserState = {
   isChecked: boolean;
   user: User | null;
   loading: boolean;
   error: string | null;
-}
+};
 
 const initialState: UserState = {
   isChecked: false,
