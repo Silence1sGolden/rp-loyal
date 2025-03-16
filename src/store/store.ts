@@ -6,8 +6,10 @@ import {
   TypedUseSelectorHook,
 } from 'react-redux';
 import { MSGReducer } from '../slices/msgSlice';
+import { ProfileReducer } from '@/slices/profileSlice';
 
 const rootSlice = {
+  profile: ProfileReducer,
   user: UserReducer,
   msg: MSGReducer,
 };

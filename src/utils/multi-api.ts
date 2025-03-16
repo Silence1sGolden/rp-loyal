@@ -1,6 +1,12 @@
+import {
+  mockAbout,
+  mockListOfTags,
+  mockRoles,
+  mockStats,
+} from '@/pages/my-profile/mock';
 import { Message } from '../slices/msgSlice';
 import { CHATS, LESBEK_CHAT, MAX_JACY_CHAT, PUPPY_CHAT } from './constants';
-import { User } from './types';
+import { TUserProfileData, User } from './types';
 import { getValueBetween, timeout } from './utils';
 
 export interface UserResponse {
@@ -116,10 +122,22 @@ export function getChatApi(id: string): Promise<Response<getChatResponse>> {
 }
 
 export function getChatsApi(): Promise<Response<getChatsResponse>> {
-  return timeout(getValueBetween(1000, 5000), {
+  return timeout<Response<getChatsResponse>>(getValueBetween(1000, 5000), {
     status: true,
     data: {
       chats: CHATS,
+    },
+  });
+}
+
+export function getProfileApi(): Promise<Response<TUserProfileData>> {
+  return timeout<Response<TUserProfileData>>(getValueBetween(1000, 5000), {
+    status: true,
+    data: {
+      stats: mockStats,
+      likesTags: mockListOfTags,
+      about: mockAbout,
+      rolesForms: mockRoles,
     },
   });
 }
