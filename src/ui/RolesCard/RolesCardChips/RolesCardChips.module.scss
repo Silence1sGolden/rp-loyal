@@ -1,0 +1,18 @@
+@use '@/styles/colors' as *;
+@use '@/styles/mixins' as *;
+
+.chip {
+  @include text;
+
+  padding: 0px 5px;
+  border-radius: 100px;
+  color: $WHITE;
+}
+
+.peach {
+  background-color: $PEACH;
+}
+
+.lavander {
+  background-color: $LAVANDER;
+}

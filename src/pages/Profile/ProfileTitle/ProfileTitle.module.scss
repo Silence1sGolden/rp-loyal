@@ -1,0 +1,40 @@
+@use '@/styles/colors' as *;
+@use '@/styles/mixins' as *;
+
+.profileTitle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+
+  .avatar {
+    block-size: 200px;
+    inline-size: 200px;
+    min-inline-size: 200px;
+    object-fit: cover;
+    border-radius: 100px;
+  }
+
+  .rightSide {
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    .nickname {
+      @include h1-m;
+
+      inline-size: 100%;
+      text-align: center;
+      color: $WHITE;
+    }
+
+    .subtitle {
+      @include h3;
+
+      inline-size: 100%;
+      text-align: center;
+      color: $LIGHTER_GRAY;
+    }
+  }
+}

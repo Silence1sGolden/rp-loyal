@@ -1,0 +1,57 @@
+@use '@/styles/colors' as *;
+@use '@/styles/effects' as *;
+@use '@/styles/mixins' as *;
+
+.div {
+  z-index: 1;
+  position: relative;
+  inline-size: min-content;
+  display: flex;
+  gap: 5px;
+
+  padding: 5px 10px;
+  border-radius: 100px;
+  background-color: $WHITE;
+  transition: box-shadow 0.3s;
+
+  &:hover {
+    @include shadow(0px, 0px, 10px, $WHITE);
+
+    cursor: pointer;
+
+    .subtitle {
+      opacity: 1;
+    }
+  }
+
+  .subtitle {
+    @include text;
+
+    position: absolute;
+    top: calc(100% + 5px);
+    right: 50%;
+
+    pointer-events: none;
+    opacity: 0;
+    white-space: nowrap;
+    transition: opacity 0.5s 0.2s;
+    background-color: $WHITE;
+    border-bottom-left-radius: 5px;
+    border-bottom-right-radius: 5px;
+    border-top-left-radius: 5px;
+    padding: 5px;
+    color: $BLACK;
+  }
+
+  .p {
+    background-color: transparent;
+    border: 0px;
+    color: $BLACK;
+  }
+
+  .svg {
+    min-inline-size: 20px;
+    min-block-size: 20px;
+    stroke: $BLACK;
+  }
+}

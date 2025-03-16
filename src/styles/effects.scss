@@ -1,0 +1,9 @@
+@use '@/styles/colors' as *;
+
+@mixin shadow($x, $y, $z, $color) {
+  box-shadow: $x $y $z $color;
+}
+
+@mixin text-shadow($x, $y, $z, $color) {
+  text-shadow: $x $y $z $color;
+}

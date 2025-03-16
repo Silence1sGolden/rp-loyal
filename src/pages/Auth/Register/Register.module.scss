@@ -1,0 +1,15 @@
+.other {
+  justify-content: center !important;
+}
+
+.authWith {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+
+  .icon {
+    width: 35px;
+    height: 35px;
+  }
+}

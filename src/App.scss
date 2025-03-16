@@ -1,22 +1,37 @@
-@use '@/styles/constant.scss' as c;
+@use '@/styles/colors.scss' as *;
 
 body {
-  background-color: const.$GRAY;
-  min-inline-size: 375px;
-  max-inline-size: 1280px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  overflow: hidden;
-  overflow-y: auto;
+  overflow: auto;
+
+  margin: 0 auto;
+
+  background-color: $BG_DARK;
+  background-image: url('/png/background.png');
 
   #root {
+    position: relative;
     inline-size: 100%;
-  }
 
-  @media (width > 1280px) {
-    max-inline-size: none;
-    inline-size: 100%;
-    padding: 0px calc((100% - 1280px) / 2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    gap: 15px;
+
+    padding: 10px;
+    margin: 0 auto;
+  }
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+  background: $LIGHTER_GRAY;
+  border-radius: 100px;
+
+  &:hover {
+    background: rgba($WHITE, 0.5);
   }
 }

@@ -1,0 +1,7 @@
+.rolesList {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-auto-rows: minmax(120px, 132px);
+  column-gap: 15px;
+  row-gap: 15px;
+}

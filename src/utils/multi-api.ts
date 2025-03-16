@@ -1,150 +1,121 @@
-import { Message } from '../slices/msgSlice';
-import { CHATS, LESBEK_CHAT, MAX_JACY_CHAT, PUPPY_CHAT } from './constants';
-import { User } from './types';
-import { getValueBetween, timeout } from './utils';
+import { TSeachParams } from '@/slices/searchSlice';
+import {
+  TLoginData,
+  TMessage,
+  TProfile,
+  TRegisterData,
+  TResponse,
+  TRoles,
+  TSendCodeData,
+  TUserResponse,
+} from './types';
+import { BASE_URL, REFRESH_TOKEN, setFilterToString } from './utils';
 
-export interface UserResponse {
-  user: User;
-  refreshToken: string;
-  accessToken: string;
-}
+const checkResponse = <T>(res: Response): Promise<TResponse<T>> => {
+  return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+};
 
-export interface Response<T> {
-  status: boolean;
-  data: T;
-}
-
-export interface LoginUserData {
-  email: string;
-  password: string;
-}
-
-export interface RegisterUserData extends LoginUserData {
-  name: string;
-}
-
-export function checkUserApi(): Promise<Response<UserResponse>> {
-  if (!localStorage.getItem('rployal')) {
-    return Promise.reject('Время куки истекло.');
+const checkStatus = <T>(data: TResponse<T>): Promise<T> => {
+  if (data.status) {
+    return Promise.resolve(data.data);
+  } else {
+    return Promise.reject(data);
   }
-  const data = localStorage.getItem('rployal')!.split(':');
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: data[0],
-        username: data[1],
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      refreshToken: '123',
-      accessToken: '123',
-    },
+};
+
+const fetchWithToken = <T>(path: string, options?: RequestInit): Promise<T> => {
+  return fetch(path, options)
+    .then(checkResponse<T>)
+    .then(checkStatus<T>)
+    .catch((err) => {
+      if (err.error && err.error === 'Токен не действителен.') {
+        const refreshToken = localStorage.getItem(REFRESH_TOKEN);
+        if (refreshToken) {
+          return fetchWithToken<T>(path, options);
+        }
+        return Promise.reject(err);
+      }
+
+      return Promise.reject(err);
+    });
+};
+
+export const loginApi = (user: TLoginData): Promise<string> => {
+  return fetch(BASE_URL + '/api/v1/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  })
+    .then(checkResponse<string>)
+    .then(checkStatus<string>);
+};
+
+export const sendCodeApi = (data: TSendCodeData): Promise<TUserResponse> => {
+  return fetch(BASE_URL + '/api/v1/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  })
+    .then(checkResponse<TUserResponse>)
+    .then(checkStatus<TUserResponse>);
+};
+
+export const getMessagesApi = (clarifictions: {
+  _id: string;
+  count: number;
+}): Promise<TMessage[]> => {
+  return fetchWithToken<TMessage[]>(BASE_URL + '/api/v1/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(clarifictions),
+<<<<<<< HEAD
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TMessage[]>>(res);
+=======
+>>>>>>> a6e1cb1 (рефакторинг кода и конечная (наверное) настройка api)
   });
-}
+};
 
-export function loginApi(user: LoginUserData): Promise<Response<UserResponse>> {
-  if (!localStorage.getItem('rployal')) {
-    return Promise.reject('Пользователя с такими данными не существует.');
-  }
+// TODO
+// Переписать под анкеты персонажей
+// export function getFormsApi(filter: TSeachParams): Promise<TRolesForm[]> {
+//   return fetch(BASE_URL + '/api/forms', {
+//     method: 'POST',
+//     headers: { 'Content-Type': 'application/json' },
+//     body: JSON.stringify(filter),
+//   }).then(checkResponse<TRolesForm[]>);
+// }
 
-  const data = localStorage.getItem('rployal')!.split(':');
+export const getRolesApi = (filter: TSeachParams): Promise<TRoles[]> => {
+  return fetchWithToken<TRoles[]>(
+    BASE_URL + '/api/v1/roles' + setFilterToString(filter)
+  );
+};
 
-  if (user.email !== data[0]) {
-    return Promise.reject('Пользователя с такой почтой не существует.');
-  }
+export const getOtherProfileApi = (id: string): Promise<TProfile> => {
+  return fetchWithToken<TProfile>(BASE_URL + `/api/v/users/${id}`);
+};
 
-  if (user.password !== data[2]) {
-    return Promise.reject('Неверный пароль.');
-  }
+export const regUserApi = (user: TRegisterData): Promise<string> => {
+  return fetch(BASE_URL + '/api/v1/register', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  })
+    .then(checkResponse<string>)
+    .then(checkStatus<string>);
+};
 
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: data[0],
-        username: data[1],
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      accessToken: Date.now().toString(),
-      refreshToken: Date.now().toString(),
-    },
-  });
-}
+export const regUserCodeApi = (code: TSendCodeData): Promise<TUserResponse> => {
+  return fetch(BASE_URL + '/api/v1/register/code', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(code),
+  })
+    .then(checkResponse<TUserResponse>)
+    .then(checkStatus<TUserResponse>);
+};
 
-export interface getChatResponse {
-  id: string;
-  messages: Message[];
-}
-
-export interface getChatsResponse {
-  chats: Chat[];
-}
-
-export interface Chat {
-  id: string;
-  title: string;
-  img: string;
-}
-
-export function getChatApi(id: string): Promise<Response<getChatResponse>> {
-  let messages: Message[];
-  switch (id) {
-    case '1': {
-      messages = PUPPY_CHAT;
-      break;
-    }
-    case '2': {
-      messages = LESBEK_CHAT;
-      break;
-    }
-    case '3': {
-      messages = MAX_JACY_CHAT;
-      break;
-    }
-  }
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      id: id,
-      messages: messages!,
-    },
-  });
-}
-
-export function getChatsApi(): Promise<Response<getChatsResponse>> {
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      chats: CHATS,
-    },
-  });
-}
-
-export function regUserApi(
-  user: RegisterUserData
-): Promise<Response<UserResponse>> {
-  const { email, name, password } = user;
-  try {
-    localStorage.setItem('rployal', `${email}:${name}:${password}`);
-  } catch (err) {
-    return Promise.reject(err);
-  }
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: email,
-        username: name,
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      accessToken: Date.now().toString(),
-      refreshToken: Date.now().toString(),
-    },
-  });
-}
+export const getProfileApi = (): Promise<TProfile> => {
+  return fetchWithToken<TProfile>(BASE_URL + '/api/v/profile');
+};

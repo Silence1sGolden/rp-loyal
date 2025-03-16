@@ -1,0 +1,44 @@
+@use '@/styles/colors' as *;
+@use '@/styles/mixins' as *;
+
+.main {
+  block-size: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  .container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 50px;
+    align-items: center;
+
+    padding: 10px 50px;
+    border-radius: 15px;
+    background-color: $BLACK80;
+
+    .title {
+      @include h1-m;
+
+      color: $WHITE;
+    }
+
+    .form {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+
+    .other {
+      inline-size: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+
+      .link {
+        color: $WHITE;
+      }
+    }
+  }
+}

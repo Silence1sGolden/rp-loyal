@@ -1,79 +1,51 @@
-import { Route, Routes } from 'react-router';
+import { Navigate, Route, Routes } from 'react-router';
+import { lazy } from 'react';
 import './App.scss';
-import { ProtectRoute } from './components/protect-route/ProtectRoute';
-import { Profile } from './pages/profile/Profile';
-import { Main } from './pages/main/Main';
-import { NotFound } from './pages/not-found/NotFound';
-import { Login } from './pages/login/Login';
-import { Register } from './pages/register/Register';
-import { ResetPassword } from './pages/reset-password/ResetPassword';
-import { Sidebar } from './components/sidebar/Sidebar';
-import { useSelector } from './store/store';
-import { getUser } from './slices/userSlice';
-import { ChatPage } from './pages/chat/ChatPage';
-import { Chat } from './components/chat/Chat';
+import { MainLayout } from './layouts/MainLayout';
+import { NotFound } from './pages/NotFound';
+import { Loading } from './components/Loading';
+const Login = lazy(() => import('@/pages/Auth/Login'));
+const Game = lazy(() => import('@/pages/Game'));
+const ProtectLayout = lazy(() => import('./layouts/Protect'));
+const CharactersList = lazy(() => import('@/pages/CharactersList'));
+const Character = lazy(() => import('@/pages/Character'));
+const LayoutSidebar = lazy(() => import('@/layouts/Sidebar'));
+const Roles = lazy(() => import('@/pages/Roles'));
+const Search = lazy(() => import('@/pages/Search'));
+const Profile = lazy(() => import('@/pages/Profile'));
+const Register = lazy(() => import('@/pages/Auth/Register'));
 
 function App() {
-  const user = useSelector(getUser);
-
   return (
-    <>
-      {user && <Sidebar />}
-      <Routes>
-        <Route path="/" element={<Main />} />
-        <Route
-          path="/profile"
-          element={
-            <ProtectRoute>
-              <Profile />
-            </ProtectRoute>
-          }
-        />
-        <Route
-          path="/chat"
-          element={
-            <ProtectRoute>
-              <ChatPage />
-            </ProtectRoute>
-          }
-        >
-          <Route
-            path=":id"
-            element={
-              <ProtectRoute>
-                <Chat />
-              </ProtectRoute>
-            }
-          />
+    <Routes>
+      <Route element={<ProtectLayout notAuth={true} />}>
+        <Route path="login" element={<Login />} />
+        <Route path="register" element={<Register />} />
+      </Route>
+
+      <Route element={<ProtectLayout />}>
+        <Route element={<LayoutSidebar />}>
+          <Route element={<MainLayout />}>
+            <Route path="search" element={<Search />} />
+            <Route path=":userID">
+              <Route index element={<Profile />} />
+              <Route path="characters" element={<CharactersList />} />
+              <Route path="characters/:charID" element={<Character />} />
+            </Route>
+            <Route path="loading" element={<Loading />} />
+
+            <Route path="roles/:id" element={<Roles />} />
+          </Route>
         </Route>
 
-        <Route
-          path="/login"
-          element={
-            <ProtectRoute onlyOnAuth>
-              <Login />
-            </ProtectRoute>
-          }
-        />
-        <Route
-          path="/register"
-          element={
-            <ProtectRoute onlyOnAuth>
-              <Register />
-            </ProtectRoute>
-          }
-        />
-        <Route
-          path="/reset-password"
-          element={
-            <ProtectRoute onlyOnAuth>
-              <ResetPassword />
-            </ProtectRoute>
-          }
-        />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-    </>
+        <Route path="games" element={<MainLayout />}>
+          <Route index element={<NotFound />} />
+          <Route path=":gameID" element={<Game />} />
+        </Route>
+      </Route>
+
+      <Route path="*" element={<Navigate to="/login" />} />
+    </Routes>
   );
 }
 

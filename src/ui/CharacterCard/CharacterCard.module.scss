@@ -1,0 +1,83 @@
+@use '@/styles/colors' as *;
+@use '@/styles/mixins' as *;
+
+.card {
+  position: relative;
+
+  inline-size: minmax(120px, 160px);
+  block-size: 100%;
+
+  display: flex;
+  gap: 10px;
+
+  border-radius: 5px;
+  padding: 3px;
+  transition: background-color 0.3s;
+
+  &:hover {
+    cursor: pointer;
+
+    background-color: $GRAY;
+
+    .info {
+      .topInfo,
+      .bottomInfo {
+        .slicer {
+          background-color: $LIGHTER_GRAY;
+        }
+      }
+    }
+  }
+
+  .img {
+    min-inline-size: 50px;
+    max-inline-size: 50px;
+    block-size: 50px;
+    object-fit: cover;
+    object-position: center;
+    border-radius: 100px;
+  }
+
+  .info {
+    inline-size: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+
+    .topInfo,
+    .bottomInfo {
+      inline-size: 100%;
+      block-size: 100%;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      overflow: hidden;
+
+      .text {
+        @include text;
+
+        color: $WHITE;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        max-inline-size: 200px;
+      }
+
+      .slicer {
+        inline-size: 2px;
+        block-size: 50%;
+        background-color: $GRAY;
+        border-radius: 100px;
+        transition: background-color 0.3s;
+      }
+    }
+
+    .bottomInfo {
+      gap: 10px;
+
+      .text {
+        color: $LIGHTER_GRAY;
+      }
+    }
+  }
+}

@@ -13,6 +13,5 @@ export default defineConfig({
       },
     ],
   },
-  base: '/rp-loyal',
   plugins: [react(), svgr()],
 });
