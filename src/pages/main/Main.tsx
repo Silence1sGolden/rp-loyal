@@ -1,5 +1,5 @@
+import { ColoredText } from '@/components/ui/components/ColoredText/ColoredText';
 import { ReactElement } from 'react';
-import { Title } from '../../components/title/Title';
 // import style from './Main.module.scss';
 
 export function Main(): ReactElement {
@@ -23,7 +23,7 @@ export function Main(): ReactElement {
 
   return (
     <main>
-      <Title />
+      <ColoredText Shell="h1" text="Welcome to the Secret Shop" />
     </main>
   );
 }

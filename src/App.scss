@@ -1,7 +1,7 @@
 @use '@/styles/constant.scss' as c;
 
 body {
-  background-color: const.$GRAY;
+  background-color: c.$GRAY;
   min-inline-size: 375px;
   max-inline-size: 1280px;
   display: flex;
