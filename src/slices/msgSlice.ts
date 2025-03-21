@@ -1,25 +1,12 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  Chat,
-  getChatApi,
-  getChatResponse,
-  getChatsApi,
-  getChatsResponse,
-  Response,
-} from '../utils/multi-api';
+import { getChatApi, getChatsApi } from '../utils/multi-api';
 
 interface IMSGSlice {
   chatList: Chat[];
-  chats: Record<string, Message[]>;
+  chats: Record<string, TMessage[]>;
   chatListLoading: boolean;
   chatLoading: boolean;
   error: string | null;
-}
-
-export interface Message {
-  user: string;
-  message: string;
-  sendAt: string;
 }
 
 const initialState: IMSGSlice = {

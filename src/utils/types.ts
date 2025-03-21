@@ -1,11 +1,17 @@
 import { RoleFormProps } from '@/components/ui/components/RoleForm/types';
 import { UserStats } from '@/components/ui/components/Stats/types';
 
-export interface User {
+export type TMessage = {
+  user: string;
+  message: string;
+  sendAt: string;
+};
+
+export type TUser = {
   username: string;
   email: string;
   profileIMG: string;
-}
+};
 
 export type TUserProfileData = {
   stats: UserStats;
@@ -14,16 +20,16 @@ export type TUserProfileData = {
   rolesForms: RoleFormProps[];
 };
 
-export interface IUserData {
+export type TUserData = {
   emailValue: string;
   emailError: string;
   passwordValue: string;
   passwordError: string;
-}
+};
 
-export interface IRegisterData extends IUserData {
+export type IRegisterData = TUserData & {
   nameValue: string;
   nameError: string;
   repeatPasswordValue: string;
   repeatPasswordError: string;
-}
+};
