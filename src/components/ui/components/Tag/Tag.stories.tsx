@@ -20,7 +20,7 @@ const meta: Meta<typeof Tag> = {
 export default meta;
 type Story = StoryObj<typeof Tag>;
 
-export const FantasyMobile: Story = {
+export const Default: Story = {
   args: {
     title: 'Приключения',
   },
