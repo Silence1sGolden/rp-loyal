@@ -1,0 +1,35 @@
+.heart {
+  opacity: 1;
+  transition:
+    opacity 0.3s,
+    fill 0.3s;
+  transform-origin: center;
+}
+
+.active {
+  .heart {
+    animation: animatedHeart 0.5s ease-in-out forwards;
+  }
+}
+
+@keyframes animatedHeart {
+  from {
+    transform: rotateZ(0deg);
+  }
+
+  25% {
+    transform: rotateZ(15deg) scale(1.2);
+  }
+
+  50% {
+    transform: rotateZ(-15deg);
+  }
+
+  75% {
+    transform: rotateZ(15deg) scale(1);
+  }
+
+  to {
+    transform: rotateZ(0deg);
+  }
+}
