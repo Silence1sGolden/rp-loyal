@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import style from './IconCheckBox.module.scss';
 import svg from '../Icon.module.scss';
 import clsx from 'clsx';
