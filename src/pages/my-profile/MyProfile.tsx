@@ -34,6 +34,7 @@ export function MyProfile({}: MyProfileProps) {
         subtitle=""
         // TODO
         // Необхожимо добавить в user поле status
+        //
       />
       <Stats userStats={profile.stats} />
       <TiteledChips title="Любимые теги" list={profile.likesTags} />
