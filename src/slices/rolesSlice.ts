@@ -77,7 +77,7 @@ const rolesSlice = createSlice({
   },
 });
 
-export const MSGReducer = rolesSlice.reducer;
+export const RolesReducer = rolesSlice.reducer;
 export const {} = rolesSlice.actions;
 export const { getLoading, getRoles, getRolesByID, getError } =
   rolesSlice.selectors;
