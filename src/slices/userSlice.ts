@@ -1,44 +1,36 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { User } from '../utils/types';
-import {
-  checkUserApi,
-  loginApi,
-  LoginUserData,
-  RegisterUserData,
-  regUserApi,
-  Response,
-  UserResponse,
-} from '../utils/multi-api';
+import { checkUserApi, loginApi, regUserApi } from '../utils/multi-api';
+import { TLoginData, TRegisterData, TResponse, TUser } from '@/utils/types';
 
-export type UserState = {
-  isChecked: boolean;
-  user: User | null;
+export type userState = {
+  auth: boolean;
+  user: TUser | null;
   loading: boolean;
   error: string | null;
 };
 
-const initialState: UserState = {
-  isChecked: false,
+const initialState: userState = {
+  auth: false,
   user: null,
   loading: false,
   error: null,
 };
 
-export const loginUser = createAsyncThunk('user/login', (user: LoginUserData) =>
+export const loginUser = createAsyncThunk('user/login', (user: TLoginData) =>
   loginApi(user)
 );
 
 export const regUser = createAsyncThunk(
-  'user/registration',
-  (user: RegisterUserData) => regUserApi(user)
+  'user/register',
+  (user: TRegisterData) => regUserApi(user)
 );
 
-export const getUserData = createAsyncThunk('user/get', checkUserApi);
+export const getAuth = createAsyncThunk('user/getAuth', checkUserApi);
 
-export const checkUser = createAsyncThunk('user/check', (_, { dispatch }) => {
+export const checkAuth = createAsyncThunk('user/check', (_, { dispatch }) => {
   // замена cookie
   if (localStorage.getItem('accessToken')) {
-    dispatch(getUserData()).finally(() => {
+    dispatch(getAuth()).finally(() => {
       dispatch(setIsChecked());
     });
   } else {
@@ -46,34 +38,30 @@ export const checkUser = createAsyncThunk('user/check', (_, { dispatch }) => {
   }
 });
 
-const userSlice = createSlice({
+const userSlise = createSlice({
   name: 'user',
   initialState: initialState,
   reducers: {
     setIsChecked: (state) => {
-      state.isChecked = true;
+      state.auth = true;
     },
   },
   selectors: {
-    getCheck: (state) => state.isChecked,
+    getAuthCheck: (state) => state.auth,
     getUser: (state) => state.user,
     getLoading: (state) => state.loading,
     getError: (state) => state.error,
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getUserData.pending, (state) => {
-        state.loading = true;
+      .addCase(getAuth.pending, (state) => {
+        state.auth = true;
         state.error = '';
       })
-      .addCase(
-        getUserData.fulfilled,
-        (state, actions: PayloadAction<Response<UserResponse>>) => {
-          state.loading = false;
-          state.user = actions.payload.data.user;
-        }
-      )
-      .addCase(getUserData.rejected, (state, error) => {
+      .addCase(getAuth.fulfilled, (state) => {
+        state.loading = false;
+      })
+      .addCase(getAuth.rejected, (state, error) => {
         state.loading = false;
         state.error = error.error.message!;
       })
@@ -83,9 +71,9 @@ const userSlice = createSlice({
       })
       .addCase(
         loginUser.fulfilled,
-        (state, action: PayloadAction<Response<UserResponse>>) => {
+        (state, action: PayloadAction<TResponse<TUser>>) => {
           state.loading = false;
-          state.user = action.payload.data.user;
+          state.user = action.payload.data;
         }
       )
       .addCase(loginUser.rejected, (state, error) => {
@@ -98,9 +86,9 @@ const userSlice = createSlice({
       })
       .addCase(
         regUser.fulfilled,
-        (state, action: PayloadAction<Response<UserResponse>>) => {
+        (state, action: PayloadAction<TResponse<TUser>>) => {
           state.loading = false;
-          state.user = action.payload.data.user;
+          state.user = action.payload.data;
         }
       )
       .addCase(regUser.rejected, (state, error) => {
@@ -110,6 +98,7 @@ const userSlice = createSlice({
   },
 });
 
-export const UserReducer = userSlice.reducer;
-export const { setIsChecked } = userSlice.actions;
-export const { getCheck, getUser, getError, getLoading } = userSlice.selectors;
+export const UserReducer = userSlise.reducer;
+export const { setIsChecked } = userSlise.actions;
+export const { getAuthCheck, getUser, getError, getLoading } =
+  userSlise.selectors;

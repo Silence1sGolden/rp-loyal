@@ -1,23 +1,39 @@
-import { RoleFormProps } from '@/components/ui/components/RoleForm/types';
 import { UserStats } from '@/components/ui/components/Stats/types';
 
 export type TMessage = {
+  _id: string;
   user: string;
   message: string;
   sendAt: string;
 };
 
-export type TUser = {
-  username: string;
-  email: string;
-  profileIMG: string;
+export type TRolesForm = {
+  _id: string;
+  title: string;
+  author: string;
+  tags: string[];
+  ganre: string[];
+  about: string;
+  rolesImage: string;
 };
 
-export type TUserProfileData = {
+export type TUser = {
+  profileIMG: string;
+  username: string;
+  email: string;
+};
+
+export type TAuth = {
+  uniqueID: string;
+  accessToken: string;
+  refreshToken: string;
+};
+
+export type TProfile = {
   stats: UserStats;
   likesTags: string[];
   about: string;
-  rolesForms: RoleFormProps[];
+  rolesForms: TRolesForm[];
 };
 
 export type TUserData = {
@@ -32,4 +48,50 @@ export type IRegisterData = TUserData & {
   nameError: string;
   repeatPasswordValue: string;
   repeatPasswordError: string;
+};
+
+export type TMessagesResponse = {
+  _id: string;
+  messages: TMessage[];
+};
+
+export type TFormsResponse = {
+  roles: TRolesForm[];
+};
+
+export type TRolesResponse = {
+  roles: TRoles[];
+};
+
+export type TRoles = {
+  _id: string;
+  title: string;
+  messages: TMessage[];
+  discussion: TMessage[];
+  rolesImage: string;
+};
+
+export type TUserResponse = {
+  user: TUser;
+  refreshToken: string;
+  accessToken: string;
+};
+
+export type TResponse<T> = {
+  status: boolean;
+  data: T;
+};
+
+export type TUnpack<T> = {
+  status: boolean;
+  data: T;
+};
+
+export type TLoginData = {
+  email: string;
+  password: string;
+};
+
+export type TRegisterData = TLoginData & {
+  name: string;
 };

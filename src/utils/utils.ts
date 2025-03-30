@@ -1,3 +1,7 @@
+import { TSeachParams } from '@/slices/searchSlice';
+import { TResponse, TRolesForm } from './types';
+import { ROLES } from './constants';
+
 export const NameRegExp = new RegExp(
   '/^[\wА-Яа-я]{3,12}[^\s\+\=\-\_!@#$%^&*/,\.\'\"\`{}[\]()]$/'
 );
@@ -14,10 +18,13 @@ export function createToken(): string {
   return token;
 }
 
-export function timeout<T>(time: number, data: T): Promise<T> {
+export function timeout<T>(time: number, data: T): Promise<TResponse<T>> {
   return new Promise((res) => {
     setTimeout(() => {
-      return res(data);
+      res({
+        status: true,
+        data: data,
+      });
     }, time);
   });
 }
@@ -29,3 +36,26 @@ export function setCookie(
 ): void {
   document.cookie = key + '=' + value + '; expires=' + time;
 }
+
+export const filterForms = (filter: TSeachParams): TRolesForm[] => {
+  let filteredForms = ROLES;
+
+  for (let key in filter) {
+    switch (key) {
+      case 'tags': {
+        filter.tags.forEach((item) => {
+          filteredForms = ROLES.filter((role) => role.tags.includes(item));
+        });
+        break;
+      }
+      case 'ganre': {
+        filter.ganre.forEach((item) => {
+          filteredForms = ROLES.filter((role) => role.ganre.includes(item));
+        });
+        break;
+      }
+    }
+  }
+
+  return filteredForms;
+};

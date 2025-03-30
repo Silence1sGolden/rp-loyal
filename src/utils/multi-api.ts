@@ -1,118 +1,67 @@
 import {
-  mockAbout,
-  mockListOfTags,
-  mockRoles,
-  mockStats,
-} from '@/pages/my-profile/mock';
-import { TMessage, TUserProfileData, TUser } from './types';
-import { getValueBetween, timeout } from './utils';
-import { CHATS, MESSAGES, USER } from './constants';
+  TFormsResponse,
+  TLoginData,
+  TMessagesResponse,
+  TProfile,
+  TRegisterData,
+  TResponse,
+  TRolesResponse,
+  TUser,
+} from './types';
+import { filterForms, getValueBetween, timeout } from './utils';
+import { CHATS, MESSAGES, PROFILE, USER } from './constants';
+import { TSeachParams } from '@/slices/searchSlice';
 
-export type TUserResponse = {
-  user: TUser;
-  refreshToken: string;
-  accessToken: string;
-};
-
-export type TResponse<T> = Promise<{
-  status: boolean;
-  data: T;
-}>;
-
-export type TLoginData = {
-  email: string;
-  password: string;
-};
-
-export interface IRegisterData extends TLoginData {
-  name: string;
+export function checkUserApi(): Promise<TResponse<null>> {
+  return timeout<null>(getValueBetween(1000, 5000), null);
 }
 
-export function checkUserApi(): TResponse<TUserResponse> {
-  console.log('checkUser');
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: USER,
-      refreshToken: 'refreshToken',
-      accessToken: 'accessToken',
-    },
+export function loginApi(user: TLoginData): Promise<TResponse<TUser>> {
+  return timeout<TUser>(getValueBetween(1000, 5000), USER);
+}
+
+export function getMessagesApi(clarifictions: {
+  _id: string;
+  count: number;
+}): Promise<TResponse<TMessagesResponse>> {
+  const { _id, count } = clarifictions;
+  console.log({ chatID: _id, count: count });
+  return timeout<TMessagesResponse>(getValueBetween(1000, 5000), {
+    _id: _id,
+    messages: MESSAGES,
   });
 }
 
-export function loginApi(user: TLoginData): TResponse<TUserResponse> {
-  console.log('user: ', user);
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: USER,
-      refreshToken: 'refreshToken',
-      accessToken: 'accessToken',
-    },
+export function getFormsApi(
+  filter: TSeachParams
+): Promise<TResponse<TFormsResponse>> {
+  console.log(filter);
+  return timeout<TFormsResponse>(getValueBetween(1000, 5000), {
+    roles: filterForms(filter),
   });
 }
 
-export type TChatResponse = {
-  messages: TMessage;
-};
-
-export type TChatsResponse = {
-  chats: TChat[];
-};
-
-export type TChat = {
-  id: string;
-  title: string;
-  img: string;
-  lastMessage: TMessage;
-};
-
-export function getChatApi(id: string): TResponse<TChatResponse> {
-  console.log({ chatID: id, message: MESSAGES });
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      messages: MESSAGES[+id],
-    },
-  });
-}
-
-export function getChatsApi(): TResponse<TChatsResponse> {
+export function getRolesApi(): Promise<TResponse<TRolesResponse>> {
   console.log('chats: ', CHATS);
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      chats: CHATS,
-    },
+  return timeout<TRolesResponse>(getValueBetween(1000, 5000), {
+    roles: CHATS,
   });
 }
 
-export function getProfileApi(): TResponse<TUserProfileData> {
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      stats: mockStats,
-      likesTags: mockListOfTags,
-      about: mockAbout,
-      rolesForms: mockRoles,
-    },
-  });
+/**
+ * Запрос на сервер для получения профиля пользователя
+ * @param id Иднтификатор профиля, который надо получить
+ * @returns TProfile обьект
+ */
+export function getProfileApi(id: string): Promise<TResponse<TProfile>> {
+  return timeout<TProfile>(getValueBetween(1000, 5000), PROFILE);
 }
 
-export function regUserApi(user: IRegisterData): TResponse<TUserResponse> {
-  console.log('registration: ', user);
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: user.email,
-        username: user.name,
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      refreshToken: 'refreshToken',
-      accessToken: 'accessToken',
-    },
-  });
+/**
+ * Запрос на сервер для регистрации пользователя в системе
+ * @param user Данные пользователя для регистрации
+ * @returns TUser обьект
+ */
+export function regUserApi(user: TRegisterData): Promise<TResponse<TUser>> {
+  return timeout<TUser>(getValueBetween(1000, 5000), USER);
 }
