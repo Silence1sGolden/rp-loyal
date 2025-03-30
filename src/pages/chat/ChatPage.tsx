@@ -3,7 +3,7 @@ import { Outlet } from 'react-router';
 
 import style from './Chat.module.scss';
 import { useDispatch } from '../../store/store';
-import { requestChats } from '../../slices/msgSlice';
+import { requestChats } from '../../slices/rolesSlice';
 
 export function ChatPage(): ReactElement {
   const dispatch = useDispatch();

@@ -1,4 +1,4 @@
-import { Message } from '../../../../slices/msgSlice';
+import { Message } from '../../../../slices/rolesSlice';
 
 export type RoleChatInformation = {
   avatar: string;
