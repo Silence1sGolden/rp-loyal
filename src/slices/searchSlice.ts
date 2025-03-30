@@ -1,5 +1,5 @@
 import { getFormsApi } from '@/utils/multi-api';
-import { TRolesForm } from '@/utils/types';
+import { TFormsResponse, TResponse, TRolesForm } from '@/utils/types';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 export type TSeachParams = {
