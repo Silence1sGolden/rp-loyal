@@ -14,7 +14,9 @@ const initialState: TProfileSliceState = {
   error: null,
 };
 
-export const reqProfile = createAsyncThunk('profile/get', getProfileApi);
+export const reqProfile = createAsyncThunk('profile/get', (id: string) =>
+  getProfileApi(id)
+);
 
 const profileSlice = createSlice({
   name: 'profile',
