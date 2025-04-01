@@ -1,6 +1,7 @@
 import { TMessage, TProfile, TRoles, TRolesForm, TUser } from './types';
 
 export const USER: TUser = {
+  _id: 'someID',
   username: 'Danil',
   email: 'my-email@mute.ru',
   profileIMG:
@@ -133,6 +134,7 @@ export const PROFILE: TProfile = {
     rewards: 4,
     friends: 12,
   },
+  status: 'Люби себя и любим будешь!',
   about: 'Lorem Impus pante facere',
   likesTags: ['Повседневность', 'Романтика'],
   rolesForms: [],

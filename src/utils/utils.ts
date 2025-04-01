@@ -19,14 +19,17 @@ export function createToken(): string {
 }
 
 export function timeout<T>(time: number, data: T): Promise<TResponse<T>> {
-  return new Promise((res) => {
-    setTimeout(() => {
-      res({
-        status: true,
-        data: data,
-      });
-    }, time);
-  });
+  if (Date.now() % 2 === 0) {
+    return new Promise((res) => {
+      setTimeout(() => {
+        res({
+          status: true,
+          data: data,
+        });
+      }, time);
+    });
+  }
+  return Promise.reject('Произошла какая-то ошибка...');
 }
 
 export function setCookie(

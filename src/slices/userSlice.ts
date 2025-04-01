@@ -49,8 +49,8 @@ const userSlise = createSlice({
   selectors: {
     getAuthCheck: (state) => state.auth,
     getUser: (state) => state.user,
-    getLoading: (state) => state.loading,
-    getError: (state) => state.error,
+    getUserLoading: (state) => state.loading,
+    getUserError: (state) => state.error,
   },
   extraReducers: (builder) => {
     builder
@@ -100,5 +100,5 @@ const userSlise = createSlice({
 
 export const UserReducer = userSlise.reducer;
 export const { setIsChecked } = userSlise.actions;
-export const { getAuthCheck, getUser, getError, getLoading } =
+export const { getAuthCheck, getUser, getUserError, getUserLoading } =
   userSlise.selectors;

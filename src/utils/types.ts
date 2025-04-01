@@ -18,19 +18,20 @@ export type TRolesForm = {
 };
 
 export type TUser = {
+  _id: string;
   profileIMG: string;
   username: string;
   email: string;
 };
 
 export type TAuth = {
-  uniqueID: string;
   accessToken: string;
   refreshToken: string;
 };
 
 export type TProfile = {
   stats: UserStats;
+  status: string;
   likesTags: string[];
   about: string;
   rolesForms: TRolesForm[];
