@@ -129,6 +129,9 @@ export const CHATS: TRoles[] = [
 ];
 
 export const PROFILE: TProfile = {
+  username: 'Alex',
+  profileIMG:
+    'https://i.pinimg.com/736x/3f/a5/4c/3fa54c227e043ef7d869319567c7ae49.jpg',
   stats: {
     likes: 5,
     rewards: 4,
