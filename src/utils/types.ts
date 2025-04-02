@@ -30,6 +30,8 @@ export type TAuth = {
 };
 
 export type TProfile = {
+  profileIMG: string;
+  username: string;
   stats: UserStats;
   status: string;
   likesTags: string[];
