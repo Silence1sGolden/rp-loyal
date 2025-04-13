@@ -9,15 +9,20 @@ import {
   TUser,
 } from './types';
 import { filterForms, getValueBetween, timeout } from './utils';
-import { CHATS, MESSAGES, PROFILE, USER } from './constants';
+import { CHATS, MESSAGES, USER } from './constants';
 import { TSeachParams } from '@/slices/searchSlice';
 
-export function checkUserApi(): Promise<TResponse<null>> {
-  return timeout<null>(getValueBetween(1000, 5000), null);
-}
+const BASE_URL = 'http://192.168.1.100:3000';
 
-export function loginApi(user: TLoginData): Promise<TResponse<TUser>> {
-  return timeout<TUser>(getValueBetween(1000, 5000), USER);
+export function loginApi(user: TLoginData): Promise<TResponse<string>> {
+  return fetch(BASE_URL + 'api/auth', {
+    method: 'POST',
+    body: JSON.stringify(user),
+  }).then((res) => {
+    if (res.ok) {
+      return res.json();
+    }
+  });
 }
 
 export function getMessagesApi(clarifictions: {
@@ -48,20 +53,17 @@ export function getRolesApi(): Promise<TResponse<TRolesResponse>> {
   });
 }
 
-/**
- * Запрос на сервер для получения профиля пользователя
- * @param id Иднтификатор профиля, который надо получить
- * @returns TProfile обьект
- */
 export function getProfileApi(id: string): Promise<TResponse<TProfile>> {
-  return timeout<TProfile>(getValueBetween(1000, 5000), PROFILE);
+  return fetch(BASE_URL + `/api/${id}`).then((res) => {
+    if (res.ok) {
+      return res.json();
+    } else {
+      throw res.statusText;
+    }
+  });
 }
 
-/**
- * Запрос на сервер для регистрации пользователя в системе
- * @param user Данные пользователя для регистрации
- * @returns TUser обьект
- */
 export function regUserApi(user: TRegisterData): Promise<TResponse<TUser>> {
+  console.log(user);
   return timeout<TUser>(getValueBetween(1000, 5000), USER);
 }
