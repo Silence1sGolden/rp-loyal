@@ -7,13 +7,13 @@ import {
   TRolesResponse,
 } from '@/utils/types';
 
-interface IRolesSlice {
+type TRolesSlice = {
   roles: TRoles[];
   loading: boolean;
   error: string | null;
-}
+};
 
-const initialState: IRolesSlice = {
+const initialState: TRolesSlice = {
   roles: [],
   loading: false,
   error: null,

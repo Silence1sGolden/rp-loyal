@@ -35,12 +35,13 @@ const profileSlice = createSlice({
       })
       .addCase(
         reqProfile.fulfilled,
-        (state, action: PayloadAction<TResponse<TProfile>>) => {
+        (state, action: PayloadAction<TResponse<{ user: TProfile }>>) => {
           state.loading = false;
-          state.profile = action.payload.data;
+          state.profile = action.payload.data.user;
         }
       )
       .addCase(reqProfile.rejected, (state, error) => {
+        console.log('error:', error);
         state.loading = false;
         state.error = error.error.message!;
       });

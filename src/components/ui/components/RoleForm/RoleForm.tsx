@@ -2,11 +2,12 @@ import { ReactElement } from 'react';
 import style from './RoleForm.module.scss';
 import { TRolesForm } from '@/utils/types';
 
-export function RoleForm({
-  title,
-  rolesImage,
-  about,
-}: TRolesForm): ReactElement {
+type TRolesFormProps = {
+  roles: TRolesForm;
+};
+
+export function RoleForm({ roles }: TRolesFormProps): ReactElement {
+  const { rolesImage, title, about } = roles;
   return (
     <div className={style.container}>
       <img

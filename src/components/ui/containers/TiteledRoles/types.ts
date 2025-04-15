@@ -1,6 +1,6 @@
-import { RoleFormProps } from '../../components/RoleForm/types';
+import { TRolesForm } from '@/utils/types';
 
 export type TiteledRolesProps = {
   title: string;
-  roles: RoleFormProps[];
+  roles: TRolesForm[];
 };

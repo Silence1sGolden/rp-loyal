@@ -1,15 +1,15 @@
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { checkUserApi, loginApi, regUserApi } from '../utils/multi-api';
+import { loginApi, regUserApi } from '../utils/multi-api';
 import { TLoginData, TRegisterData, TResponse, TUser } from '@/utils/types';
 
-export type userState = {
+export type TUserState = {
   auth: boolean;
   user: TUser | null;
   loading: boolean;
   error: string | null;
 };
 
-const initialState: userState = {
+const initialState: TUserState = {
   auth: false,
   user: null,
   loading: false,
@@ -25,14 +25,14 @@ export const regUser = createAsyncThunk(
   (user: TRegisterData) => regUserApi(user)
 );
 
-export const getAuth = createAsyncThunk('user/getAuth', checkUserApi);
+// export const getAuth = createAsyncThunk('user/getAuth', checkAuth);
 
 export const checkAuth = createAsyncThunk('user/check', (_, { dispatch }) => {
   // замена cookie
   if (localStorage.getItem('accessToken')) {
-    dispatch(getAuth()).finally(() => {
-      dispatch(setIsChecked());
-    });
+    // dispatch(getAuth()).finally(() => {
+    //   dispatch(setIsChecked());
+    // });
   } else {
     dispatch(setIsChecked());
   }
@@ -54,28 +54,28 @@ const userSlise = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getAuth.pending, (state) => {
-        state.auth = true;
-        state.error = '';
-      })
-      .addCase(getAuth.fulfilled, (state) => {
-        state.loading = false;
-      })
-      .addCase(getAuth.rejected, (state, error) => {
-        state.loading = false;
-        state.error = error.error.message!;
-      })
+      // .addCase(getAuth.pending, (state) => {
+      //   state.auth = true;
+      //   state.error = '';
+      // })
+      // .addCase(getAuth.fulfilled, (state) => {
+      //   state.loading = false;
+      // })
+      // .addCase(getAuth.rejected, (state, error) => {
+      //   state.loading = false;
+      //   state.error = error.error.message!;
+      // })
       .addCase(loginUser.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(
-        loginUser.fulfilled,
-        (state, action: PayloadAction<TResponse<TUser>>) => {
-          state.loading = false;
-          state.user = action.payload.data;
-        }
-      )
+      // .addCase(
+      //   loginUser.fulfilled,
+      //   (state, action: PayloadAction<TResponse<TUser>>) => {
+      //     state.loading = false;
+      //     state.user = action.payload.data;
+      //   }
+      // )
       .addCase(loginUser.rejected, (state, error) => {
         state.loading = false;
         state.error = error.error.message!;

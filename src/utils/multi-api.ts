@@ -53,12 +53,14 @@ export function getRolesApi(): Promise<TResponse<TRolesResponse>> {
   });
 }
 
-export function getProfileApi(id: string): Promise<TResponse<TProfile>> {
-  return fetch(BASE_URL + `/api/${id}`).then((res) => {
+export function getProfileApi(
+  id: string
+): Promise<TResponse<{ user: TProfile }>> {
+  return fetch(BASE_URL + `/api/users/${id}`).then((res) => {
     if (res.ok) {
       return res.json();
     } else {
-      throw res.statusText;
+      throw res.json();
     }
   });
 }

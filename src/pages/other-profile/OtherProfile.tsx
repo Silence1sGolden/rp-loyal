@@ -24,7 +24,7 @@ export function OtherProfile({}: OtherProfileProps) {
       getProfileApi(id)
         .then((res) => {
           setLoading(false);
-          setProfile(res.data);
+          setProfile(res.data.user);
         })
         .catch((err) => {
           setLoading(false);

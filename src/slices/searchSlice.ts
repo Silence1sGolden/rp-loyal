@@ -13,12 +13,12 @@ export type TSeachParams = {
   };
 };
 
-interface SearchSliceState {
+type SearchSliceState = {
   searchParams: TSeachParams;
   forms: TRolesForm[] | null;
   loading: boolean;
   error: string | null;
-}
+};
 
 const initialState: SearchSliceState = {
   searchParams: {
