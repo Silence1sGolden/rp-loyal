@@ -2,25 +2,18 @@ import { ReactElement, useEffect } from 'react';
 import { Outlet } from 'react-router';
 
 import style from './Chat.module.scss';
-import { useDispatch, useSelector } from '../../store/store';
-import { getError, requestChats } from '../../slices/msgSlice';
-import { ErrorAlert } from '../../components/error-alert/ErrorAlert';
-import { ChatList } from '../../components/chat-list/ChatList';
+// import { useDispatch } from '../../store/store';
 
 export function ChatPage(): ReactElement {
-  const dispatch = useDispatch();
-
-  const error = useSelector(getError);
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestChats());
+    // dispatch(requestChats());
   }, []);
 
   return (
     <>
-      {error && <ErrorAlert errorText={error} />}
       <main className={style.main}>
-        <ChatList />
         <Outlet />
       </main>
     </>

@@ -5,13 +5,15 @@ import {
   useDispatch as disp,
   TypedUseSelectorHook,
 } from 'react-redux';
-import { MSGReducer } from '../slices/msgSlice';
+import { RolesReducer } from '../slices/rolesSlice';
 import { ProfileReducer } from '@/slices/profileSlice';
+import { SearchReducer } from '@/slices/searchSlice';
 
 const rootSlice = {
   profile: ProfileReducer,
   user: UserReducer,
-  msg: MSGReducer,
+  roles: RolesReducer,
+  search: SearchReducer,
 };
 
 export const store = configureStore({

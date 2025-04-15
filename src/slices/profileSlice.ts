@@ -1,9 +1,9 @@
-import { getProfileApi, Response } from '@/utils/multi-api';
-import { TUserProfileData } from '@/utils/types';
+import { getProfileApi } from '@/utils/multi-api';
+import { TProfile, TResponse } from '@/utils/types';
 import { createAsyncThunk, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 type TProfileSliceState = {
-  profile: TUserProfileData | null;
+  profile: TProfile | null;
   loading: boolean;
   error: string | null;
 };
@@ -14,7 +14,9 @@ const initialState: TProfileSliceState = {
   error: null,
 };
 
-export const getProfileData = createAsyncThunk('profile/get', getProfileApi);
+export const reqProfile = createAsyncThunk('profile/get', (id: string) =>
+  getProfileApi(id)
+);
 
 const profileSlice = createSlice({
   name: 'profile',
@@ -27,18 +29,18 @@ const profileSlice = createSlice({
   },
   extraReducers: (builder) => {
     builder
-      .addCase(getProfileData.pending, (state) => {
+      .addCase(reqProfile.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
       .addCase(
-        getProfileData.fulfilled,
-        (state, action: PayloadAction<Response<TUserProfileData>>) => {
+        reqProfile.fulfilled,
+        (state, action: PayloadAction<TResponse<TProfile>>) => {
           state.loading = false;
           state.profile = action.payload.data;
         }
       )
-      .addCase(getProfileData.rejected, (state, error) => {
+      .addCase(reqProfile.rejected, (state, error) => {
         state.loading = false;
         state.error = error.error.message!;
       });

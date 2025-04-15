@@ -1,0 +1,50 @@
+.check {
+  opacity: 0;
+  transition:
+    opacity 0.3s,
+    fill 0.3s;
+  transform-origin: center;
+}
+
+.rect {
+  transition:
+    opacity 0.3s,
+    fill 0.3s;
+  transform-origin: center;
+}
+
+.active {
+  .check {
+    animation: checkAnimation 0.5s 0.3s forwards ease-in-out;
+  }
+
+  .rect {
+    animation: rectAnimation 0.5s forwards ease-in-out;
+  }
+}
+
+@keyframes checkAnimation {
+  0% {
+    transform: scale(0) rotate(0deg);
+  }
+
+  80% {
+    transform: scale(1.1) rotate(360deg);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(1) rotate(360deg);
+    opacity: 1;
+  }
+}
+
+@keyframes rectAnimation {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}

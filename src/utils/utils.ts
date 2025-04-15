@@ -1,3 +1,5 @@
+import { TResponse } from './types';
+
 export const NameRegExp = new RegExp(
   '/^[\wА-Яа-я]{3,12}[^\s\+\=\-\_!@#$%^&*/,\.\'\"\`{}[\]()]$/'
 );
@@ -14,12 +16,18 @@ export function createToken(): string {
   return token;
 }
 
-export function timeout<T>(time: number, data: T): Promise<T> {
-  return new Promise((res) => {
-    setTimeout(() => {
-      return res(data);
-    }, time);
-  });
+export function timeout<T>(time: number, data: T): Promise<TResponse<T>> {
+  if (Date.now() % 2 === 0) {
+    return new Promise((res) => {
+      setTimeout(() => {
+        res({
+          status: true,
+          data: data,
+        });
+      }, time);
+    });
+  }
+  return Promise.reject('Произошла какая-то ошибка...');
 }
 
 export function setCookie(

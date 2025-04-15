@@ -1,168 +1,81 @@
 import {
-  mockAbout,
-  mockListOfTags,
-  mockRoles,
-  mockStats,
-} from '@/pages/my-profile/mock';
-import { Message } from '../slices/msgSlice';
-import { CHATS, LESBEK_CHAT, MAX_JACY_CHAT, PUPPY_CHAT } from './constants';
-import { TUserProfileData, User } from './types';
-import { getValueBetween, timeout } from './utils';
+  TLoginData,
+  TMessagesResponse,
+  TProfile,
+  TRegisterData,
+  TResponse,
+  TRoles,
+  TRolesForm,
+  TUser,
+} from './types';
+import { TSeachParams } from '@/slices/searchSlice';
 
-export interface UserResponse {
-  user: User;
-  refreshToken: string;
-  accessToken: string;
-}
+const BASE_URL = 'http://192.168.1.100:3000';
 
-export interface Response<T> {
-  status: boolean;
-  data: T;
-}
+const checkResponse = <T>(res: Response): Promise<T> => {
+  return res.ok ? res.json() : res.json().then((err) => Promise.reject(err));
+};
 
-export interface LoginUserData {
-  email: string;
-  password: string;
-}
-
-export interface RegisterUserData extends LoginUserData {
-  name: string;
-}
-
-export function checkUserApi(): Promise<Response<UserResponse>> {
-  if (!localStorage.getItem('rployal')) {
-    return Promise.reject('Время куки истекло.');
-  }
-  const data = localStorage.getItem('rployal')!.split(':');
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: data[0],
-        username: data[1],
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      refreshToken: '123',
-      accessToken: '123',
-    },
+export function loginApi(user: TLoginData) {
+  return fetch(BASE_URL + '/api/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  }).then(async (res) => {
+    return await checkResponse<TResponse<string>>(res);
   });
 }
 
-export function loginApi(user: LoginUserData): Promise<Response<UserResponse>> {
-  if (!localStorage.getItem('rployal')) {
-    return Promise.reject('Пользователя с такими данными не существует.');
-  }
-
-  const data = localStorage.getItem('rployal')!.split(':');
-
-  if (user.email !== data[0]) {
-    return Promise.reject('Пользователя с такой почтой не существует.');
-  }
-
-  if (user.password !== data[2]) {
-    return Promise.reject('Неверный пароль.');
-  }
-
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: data[0],
-        username: data[1],
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      accessToken: Date.now().toString(),
-      refreshToken: Date.now().toString(),
-    },
+export function sendCodeApi(data: { email: string; code: string }) {
+  return fetch(BASE_URL + '/api/v/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TUser>>(res);
   });
 }
 
-export interface getChatResponse {
-  id: string;
-  messages: Message[];
-}
-
-export interface getChatsResponse {
-  chats: Chat[];
-}
-
-export interface Chat {
-  id: string;
-  title: string;
-  img: string;
-}
-
-export function getChatApi(id: string): Promise<Response<getChatResponse>> {
-  let messages: Message[];
-  switch (id) {
-    case '1': {
-      messages = PUPPY_CHAT;
-      break;
-    }
-    case '2': {
-      messages = LESBEK_CHAT;
-      break;
-    }
-    case '3': {
-      messages = MAX_JACY_CHAT;
-      break;
-    }
-  }
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      id: id,
-      messages: messages!,
-    },
+export function getMessagesApi(clarifictions: { _id: string; count: number }) {
+  return fetch(BASE_URL + '/api/messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(clarifictions),
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TMessagesResponse>>(res);
   });
 }
 
-export function getChatsApi(): Promise<Response<getChatsResponse>> {
-  return timeout<Response<getChatsResponse>>(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      chats: CHATS,
-    },
+export function getFormsApi(filter: TSeachParams) {
+  return fetch(BASE_URL + '/api/forms', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(filter),
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TRolesForm[]>>(res);
   });
 }
 
-export function getProfileApi(): Promise<Response<TUserProfileData>> {
-  return timeout<Response<TUserProfileData>>(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      stats: mockStats,
-      likesTags: mockListOfTags,
-      about: mockAbout,
-      rolesForms: mockRoles,
-    },
+export function getRolesApi() {
+  return fetch(BASE_URL + '/api/chats', {
+    method: 'GET',
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TRoles[]>>(res);
   });
 }
 
-export function regUserApi(
-  user: RegisterUserData
-): Promise<Response<UserResponse>> {
-  const { email, name, password } = user;
-  try {
-    localStorage.setItem('rployal', `${email}:${name}:${password}`);
-  } catch (err) {
-    return Promise.reject(err);
-  }
-  return timeout(getValueBetween(1000, 5000), {
-    status: true,
-    data: {
-      user: {
-        email: email,
-        username: name,
-        rating: 0,
-        profileIMG:
-          'https://i.pinimg.com/736x/3c/ae/07/3cae079ca0b9e55ec6bfc1b358c9b1e2.jpg',
-      },
-      accessToken: Date.now().toString(),
-      refreshToken: Date.now().toString(),
-    },
+export function getProfileApi(id: string) {
+  return fetch(BASE_URL + `/api/users/${id}`).then(async (res) => {
+    return await checkResponse<TResponse<TProfile>>(res);
+  });
+}
+
+export function regUserApi(user: TRegisterData) {
+  return fetch(BASE_URL + '/api/users', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(user),
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TUser>>(res);
   });
 }

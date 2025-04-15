@@ -10,6 +10,7 @@ export function ColoredText({
   text,
 }: ColoredTextProps): ReactElement {
   const shellElement = useRef<HTMLHeadingElement>(null);
+  if (!text) console.log(text);
   const data = text.split('').map((item, index) => (
     <span className={style.letter} key={index}>
       {item}

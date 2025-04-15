@@ -12,8 +12,9 @@ const store = configureStore({
   },
   preloadedState: {
     user: {
-      isChecked: true,
+      auth: true,
       user: {
+        _id: '1',
         username: 'Danil',
         profileIMG:
           'https://i.pinimg.com/736x/f9/89/d6/f989d6bf533e9f9cc97e5acc8e3d9da7.jpg',

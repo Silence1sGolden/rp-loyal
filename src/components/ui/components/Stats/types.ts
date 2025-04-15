@@ -1,7 +1,7 @@
 export type UserStats = {
-  friends: number | string;
-  likes: number | string;
-  rewards: number | string;
+  fans: string[];
+  likes: string[];
+  rewards: string[];
 };
 
 export type StatsProps = {

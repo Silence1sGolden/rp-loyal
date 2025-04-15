@@ -1,10 +1,10 @@
+import { ColoredText } from '@/components/ui/components/ColoredText/ColoredText';
 import { ReactElement } from 'react';
-import { ColorText } from '../../components/ui/components/ColoredText/ColoredText';
 
 export function NotFound(): ReactElement {
   return (
     <main>
-      <ColorText text="ERROR 404 NOT FOUND" shell="h1" time={200} />
+      <ColoredText Shell="h1" text="ERROR 404 NOT FOUND" />
     </main>
   );
 }
