@@ -1,0 +1,42 @@
+@use '@/styles/constant.scss' as c;
+
+.container {
+  block-size: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  justify-content: space-around;
+  align-items: center;
+
+  .title {
+    font-family: c.$MAIN_FONT;
+    font-size: c.$H1;
+    font-weight: c.$MEDIUM;
+    text-align: center;
+    color: c.$WHITE;
+  }
+
+  .form {
+    inline-size: clamp(14.0625rem, 9.5483rem + 19.2604vw, 21.875rem);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .other {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    gap: 20px;
+
+    .link {
+      font-family: c.$MAIN_FONT;
+      font-size: c.$SUB_MINI;
+      font-weight: c.$MEDIUM;
+      text-align: center;
+      color: c.$WHITE;
+      text-decoration: underline;
+    }
+  }
+}

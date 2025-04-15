@@ -1,0 +1,9 @@
+@use '@/styles/constant.scss' as c;
+
+.svg {
+  transition: filter 0.3s;
+
+  &:hover {
+    filter: drop-shadow(c.$EFFECT_S);
+  }
+}

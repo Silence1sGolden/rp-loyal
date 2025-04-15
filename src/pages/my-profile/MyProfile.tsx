@@ -43,12 +43,12 @@ export function MyProfile({}: MyProfileProps) {
       <TiteledAnyProfile
         imageSRC={user!.profileIMG}
         title={user!.username}
-        subtitle={profile!.status}
+        subtitle={profile.status}
       />
-      <Stats userStats={profile!.stats} />
-      <TiteledChips title="Любимые теги" list={profile!.likesTags} />
-      <TiteledInformation title="О себе" text={profile!.about} />
-      <TiteledRoles title="Анкеты ролок" roles={profile!.rolesForms} />
+      <Stats userStats={profile.stats} />
+      <TiteledChips title="Любимые теги" list={profile.likesTags} />
+      <TiteledInformation title="О себе" text={profile.about} />
+      <TiteledRoles title="Анкеты ролок" roles={profile.rolesForms} />
     </div>
   );
 }
