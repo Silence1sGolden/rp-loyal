@@ -19,9 +19,20 @@ const checkResponse = <T>(res: Response): Promise<T> => {
 export function loginApi(user: TLoginData) {
   return fetch(BASE_URL + '/api/auth', {
     method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify(user),
   }).then(async (res) => {
-    return await checkResponse(res);
+    return await checkResponse<TResponse<string>>(res);
+  });
+}
+
+export function sendCodeApi(data: { email: string; code: string }) {
+  return fetch(BASE_URL + '/api/v/auth', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(data),
+  }).then(async (res) => {
+    return await checkResponse<TResponse<TUser>>(res);
   });
 }
 
