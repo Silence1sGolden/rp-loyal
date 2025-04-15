@@ -29,7 +29,6 @@ export function MyProfile({}: MyProfileProps) {
       dispatch(reqProfile(user!._id));
     }
   }, []);
-  console.log(profileError);
 
   if (profileError) {
     return <LoadingPage shell="h1" text={profileError} />;

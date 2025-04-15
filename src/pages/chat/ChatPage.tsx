@@ -2,14 +2,13 @@ import { ReactElement, useEffect } from 'react';
 import { Outlet } from 'react-router';
 
 import style from './Chat.module.scss';
-import { useDispatch } from '../../store/store';
-import { requestChats } from '../../slices/rolesSlice';
+// import { useDispatch } from '../../store/store';
 
 export function ChatPage(): ReactElement {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(requestChats());
+    // dispatch(requestChats());
   }, []);
 
   return (
