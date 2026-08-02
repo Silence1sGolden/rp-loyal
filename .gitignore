@@ -8,20 +8,37 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+.DS_Store
 dist
 dist-ssr
+coverage
 *.local
+.env.production
 
 # Editor directories and files
-.vscode/*
+vue/.vscode/settings.json
 !.vscode/extensions.json
 .idea
-.DS_Store
 *.suo
 *.ntvs*
 *.njsproj
 *.sln
 *.sw?
-*.env
 
-*storybook.log
+*.tsbuildinfo
+
+.eslintcache
+
+# Cypress
+/cypress/videos/
+/cypress/screenshots/
+
+# Vitest
+__screenshots__/
+
+# Playwright
+test-results
+playwright-report
+blob-report
+playwright/.cache/
+playwright/.auth/
