@@ -1,0 +1,75 @@
+@use '@/shared/assets/styles/colors' as *;
+
+:root {
+  --background: $color-white-200;
+  --foreground: $color-gray-1300;
+  --card: $color-white-100;
+  --card-foreground: $color-gray-1300;
+  --popover: $color-white-100;
+  --popover-foreground: $color-gray-1300;
+  --primary: $color-red-300;
+  --primary-foreground: $color-white-100;
+  --secondary: $color-white-400;
+  --secondary-foreground: $color-gray-900;
+  --muted: $color-white-300;
+  --muted-foreground: $color-gray-800;
+  --accent: $color-green-200;
+  --accent-foreground: $color-white-100;
+  --destructive: $color-red-400;
+  --destructive-foreground: $color-white-100;
+  --border: $color-rgba-120-90-60-015;
+  --input: $color-transparent;
+  --input-background: $color-white-300;
+  --switch-background: $color-white-700;
+  --ring: $color-red-300;
+  --chart-1: $color-red-300;
+  --chart-2: $color-green-200;
+  --chart-3: $color-orange-300;
+  --chart-4: $color-blue-200;
+  --chart-5: $color-orange-200;
+  --sidebar: $color-white-300;
+  --sidebar-foreground: $color-gray-1300;
+  --sidebar-primary: $color-red-300;
+  --sidebar-primary-foreground: $color-white-100;
+  --sidebar-accent: $color-white-500;
+  --sidebar-accent-foreground: $color-gray-900;
+  --sidebar-border: $color-rgba-120-90-60-012;
+  --sidebar-ring: $color-red-300;
+}
+
+.dark {
+  --background: $color-gray-1500;
+  --foreground: $color-white-600; // #ede7dd – близок к white-600
+  --card: $color-gray-1200;
+  --card-foreground: $color-white-600;
+  --popover: $color-gray-1200;
+  --popover-foreground: $color-white-600;
+  --primary: $color-red-200;
+  --primary-foreground: $color-gray-1500;
+  --secondary: $color-gray-1000;
+  --secondary-foreground: $color-white-500; // #d4c9bc – white-500
+  --muted: $color-gray-1100;
+  --muted-foreground: $color-gray-800; // #9c8c7c – ближе к gray-800
+  --accent: $color-green-100;
+  --accent-foreground: $color-gray-1500;
+  --destructive: $color-red-500;
+  --destructive-foreground: $color-red-100;
+  --border: $color-rgba-200-170-130-012;
+  --input: $color-rgba-200-170-130-008;
+  --input-background: $color-gray-1000;
+  --switch-background: $color-gray-900; // #4a3828 – темнее gray-800
+  --ring: $color-red-200;
+  --chart-1: $color-red-200;
+  --chart-2: $color-green-100;
+  --chart-3: $color-orange-100;
+  --chart-4: $color-blue-100;
+  --chart-5: $color-orange-200;
+  --sidebar: $color-gray-1400;
+  --sidebar-foreground: $color-white-600;
+  --sidebar-primary: $color-red-200;
+  --sidebar-primary-foreground: $color-gray-1500;
+  --sidebar-accent: $color-gray-1000;
+  --sidebar-accent-foreground: $color-white-500;
+  --sidebar-border: $color-rgba-200-170-130-01;
+  --sidebar-ring: $color-red-200;
+}
