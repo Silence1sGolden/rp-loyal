@@ -1,0 +1,17 @@
+@use '@/shared/assets/styles/mixins/fonts' as *;
+@use '@/shared/assets/styles/mixins/texts' as *;
+
+.footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 24px;
+
+  .me {
+    @include t-14-400;
+    @include font-lora;
+
+    color: var(--muted-foreground);
+  }
+}

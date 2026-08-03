@@ -1,0 +1,31 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.impact {
+  position: relative;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .number {
+    @include font-dmmono;
+    @include t-10-500;
+
+    color: var(--muted-foreground);
+  }
+
+  .title {
+    @include font-lora;
+    @include t-16-500;
+
+    color: var(--foreground);
+  }
+
+  .subtitle {
+    @include font-dmsans;
+    @include t-14-400;
+
+    color: var(--muted-foreground);
+  }
+}

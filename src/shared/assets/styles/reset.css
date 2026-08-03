@@ -10,6 +10,18 @@
   box-sizing: border-box;
 }
 
+#root {
+  display: flex;
+  flex-direction: column;
+
+  background-color: var(--background);
+
+  color: var(--foreground);
+
+  transition-property: background-color, color;
+  transition-duration: .3s;
+}
+
 a,
 a:link,
 a:visited {

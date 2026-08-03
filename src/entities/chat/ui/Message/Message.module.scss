@@ -1,0 +1,77 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.message {
+  width: fit-content;
+
+  display: flex;
+  flex-direction: column;
+  align-self: flex-start;
+  gap: 12px;
+
+  padding: 12px;
+  border-width: 1px;
+  border-style: solid;
+
+  border-top-left-radius: 16px;
+  border-top-right-radius: 16px;
+  border-bottom-left-radius: 2px;
+  border-bottom-right-radius: 16px;
+
+  .type {
+    @include t-10-500;
+    @include font-dmmono;
+
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
+  .text {
+    @include font-lora;
+
+    color: var(--foreground);
+  }
+}
+
+.me {
+  align-self: flex-end;
+
+  border-bottom-left-radius: 16px;
+  border-bottom-right-radius: 2px;
+}
+
+.event {
+  background-color: color-mix(in srgb, var(--primary) 6%, transparent);
+  border-color: color-mix(in srgb, var(--primary) 15%, transparent);
+
+  .type {
+    color: var(--primary);
+  }
+}
+
+.action {
+  background-color: var(--secondary);
+  border-color: var(--border);
+
+  .type {
+    color: var(--mute-foreground);
+  }
+}
+
+.dialogue {
+  background-color: var(--card);
+  border-color: var(--border);
+
+  .type {
+    color: var(--primary);
+  }
+}
+
+.thought {
+  background-color: color-mix(in srgb, var(--accent) 8%, transparent);
+  border-color: color-mix(in srgb, var(--accent) 20%, transparent);
+
+  .type {
+    color: var(--accent);
+  }
+}

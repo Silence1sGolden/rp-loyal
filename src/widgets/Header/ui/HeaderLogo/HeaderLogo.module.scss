@@ -1,0 +1,23 @@
+@use '@/shared/assets/styles/mixins/fonts' as *;
+@use '@/shared/assets/styles/mixins/texts' as *;
+
+.logo {
+  @include font-lora;
+  @include t-16-600;
+
+  display: flex;
+  align-items: center;
+  gap: 2px;
+
+  letter-spacing: -0.025em;
+  color: var(--foreground);
+
+  .icon {
+    height: 20px;
+    width: 20px;
+
+    flex-shrink: 0;
+
+    color: var(--primary);
+  }
+}

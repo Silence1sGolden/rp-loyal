@@ -3,27 +3,23 @@ import {
   type ButtonHTMLAttributes,
   type ForwardedRef,
   type JSX,
-  type ReactNode,
 } from 'react';
 import { clsx } from '@/shared/utils/utils';
 import style from './CustomButton.module.scss';
 
 type TCustomButtonProps = {
-  text?: string;
-  variant?: 'primary' | 'empty' | 'secondary' | 'red' | 'black' | 'sky';
-  LeftSideIcon?: ReactNode;
-  RightSideIcon?: ReactNode;
+  variant?: 'primary' | 'secondary' | 'empty';
+  padding?: '6x16' | '6x6' | '12x24';
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
 function Component(
   {
-    text,
-    variant = 'primary',
+    children,
     className,
     type = 'button',
-    LeftSideIcon,
-    RightSideIcon,
+    variant = 'primary',
+    padding = '6x6',
     ...other
   }: TCustomButtonProps,
   ref?: ForwardedRef<HTMLButtonElement>
@@ -31,13 +27,16 @@ function Component(
   return (
     <button
       ref={ref}
-      className={clsx([style.button, className, style[variant]])}
+      className={clsx([
+        style.button,
+        className,
+        style[variant],
+        style[`padding_${padding}`],
+      ])}
       type={type}
       {...other}
     >
-      {LeftSideIcon && LeftSideIcon}
-      {text}
-      {RightSideIcon && RightSideIcon}
+      {children}
     </button>
   );
 }

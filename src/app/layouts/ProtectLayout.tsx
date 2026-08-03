@@ -1,15 +1,14 @@
 import { Navigate, Outlet } from 'react-router';
-import { MockCurrentUser } from '@/shared/mock/user';
 
 type TProtectLayout = {
   forAuth?: boolean;
 };
 
 export default function ProtectLayout({ forAuth = true }: TProtectLayout) {
-  const currentUser = MockCurrentUser;
+  const currentUser = true;
 
   if (currentUser && forAuth) {
-    return <Navigate to={`/${currentUser._id}`} />;
+    return <Navigate to={`/${currentUser}`} />;
   }
 
   if (!currentUser) {

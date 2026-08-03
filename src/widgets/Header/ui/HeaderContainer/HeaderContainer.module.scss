@@ -1,0 +1,10 @@
+.header {
+  z-index: 50;
+
+  position: sticky;
+  top: 0;
+
+  background-color: color-mix(in srgb, var(--background) 90%, transparent);
+  backdrop-filter: blur(4px);
+  border-bottom: 1px solid var(--border);
+}

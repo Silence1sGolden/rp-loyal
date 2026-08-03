@@ -1,0 +1,58 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.button {
+  @include t-14-500;
+  @include font-dmsans;
+
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  transition-property: color, border, background-color, opacity;
+  transition-duration: 0.3s;
+}
+
+.primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.empty {
+  background-color: transparent;
+  color: var(--muted-foreground);
+
+  &:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--foreground);
+  border-color: var(--border);
+
+  &:hover {
+    background-color: var(--muted);
+  }
+}
+
+.padding_12x24 {
+  padding: 12px 24px;
+}
+
+.padding_6x16 {
+  padding: 6px 16px;
+}
+
+.padding_6x6 {
+  padding: 6px;
+}

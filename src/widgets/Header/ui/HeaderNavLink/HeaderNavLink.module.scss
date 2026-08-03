@@ -1,0 +1,30 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.link {
+  @include t-14-500;
+  @include font-dmsans;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  padding: 8px 14px;
+  border-radius: 8px;
+
+  line-height: 1.5;
+  color: var(--muted-foreground);
+
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+
+  &:hover {
+    color: var(--foreground);
+    background-color: var(--muted);
+  }
+}
+
+.active {
+  color: var(--foreground);
+  background-color: var(--muted);
+}

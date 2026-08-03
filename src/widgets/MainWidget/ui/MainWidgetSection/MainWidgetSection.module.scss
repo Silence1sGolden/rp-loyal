@@ -1,0 +1,39 @@
+.section {
+  transition-property: background-color;
+  transition-duration: 0.3s;
+
+  &:first-of-type .content {
+    padding: 80px 24px 64px;
+  }
+
+  .content {
+    max-width: 1152px;
+
+    margin-left: auto;
+    margin-right: auto;
+
+    padding: 80px 24px;
+  }
+}
+
+.flex {
+  display: flex;
+  flex-direction: column;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 32px;
+}
+
+.primary {
+  background-color: transparent;
+}
+
+.secondary {
+  border-top: 1px solid var(--border);
+  border-bottom: 1px solid var(--border);
+
+  background-color: color-mix(in srgb, var(--muted) 40%, transparent);
+}

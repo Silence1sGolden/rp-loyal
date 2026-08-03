@@ -1,0 +1,12 @@
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.icon {
+  height: 16px;
+  width: 16px;
+
+  flex-shrink: 0;
+}
