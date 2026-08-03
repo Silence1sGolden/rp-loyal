@@ -1,30 +1,24 @@
-import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router';
 import Moon from '@/shared/assets/icons/Moon.svg?react';
 import Sun from '@/shared/assets/icons/Sun.svg?react';
+import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { CustomButton } from '@/shared/ui/CustomButton/CustomButton';
 import style from './HeaderSignIn.module.scss';
 
 export function HeaderSignIn() {
+  const { theme, toggleTheme } = useTheme();
   const navigate = useNavigate();
-  const [isDarkTheme, setIsDarkTheme] = useState(false);
 
-  const handleToggleTheme = () => {
-    setIsDarkTheme(!isDarkTheme);
-  };
+  const isDark = theme === 'dark';
 
   const handleSingIn = () => {
     navigate('/login');
   };
 
-  useEffect(() => {
-    document.documentElement.classList.toggle('dark', isDarkTheme);
-  }, [isDarkTheme]);
-
   return (
     <div className={style.content}>
-      <CustomButton variant="empty" padding="6x6" onClick={handleToggleTheme}>
-        {isDarkTheme ? (
+      <CustomButton variant="empty" padding="6x6" onClick={toggleTheme}>
+        {isDark ? (
           <Sun className={style.icon} />
         ) : (
           <Moon className={style.icon} />
