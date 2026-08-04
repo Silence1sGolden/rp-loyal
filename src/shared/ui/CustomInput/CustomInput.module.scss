@@ -1,0 +1,30 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.input {
+  @include font-dmsans;
+  @include t-14-400;
+
+  padding: 10px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  outline: none;
+
+  background-color: var(--input-background);
+  color: var(--foreground);
+
+  transition-property: background-color, color, border, outline;
+  transition-duration: 0.3s;
+
+  &::placeholder {
+    color: var(--muted-foreground);
+  }
+
+  &:focus {
+    outline: none;
+  }
+
+  &:focus-visible {
+    outline: 2px solid color-mix(in srgb, var(--primary) 30%, transparent);
+  }
+}

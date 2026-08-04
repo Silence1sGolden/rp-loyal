@@ -1,34 +1,35 @@
 @use '@/shared/assets/styles/mixins/fonts' as *;
 @use '@/shared/assets/styles/mixins/texts' as *;
 
-.content {
+.container {
+  display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
 
-  padding: 60px 0px;
+  margin-bottom: 32px;
 
-  .title {
-    @include t-24-600;
+  .icon {
+    width: 32px;
+    height: 32px;
+
+    flex-shrink: 0;
 
     margin-bottom: 12px;
+
+    color: var(--primary);
+  }
+
+  .title {
+    @include font-lora;
+    @include t-24-600;
+
+    margin-bottom: 4px;
   }
 
   .subtitle {
     @include font-dmsans;
     @include t-14-400;
 
-    margin-bottom: 28px;
-
     color: var(--muted-foreground);
-  }
-
-  .icon {
-    height: 16px;
-    width: 16px;
-
-    flex-shrink: 0;
-
-    transform: rotateZ(180deg);
-    transform-origin: center;
   }
 }

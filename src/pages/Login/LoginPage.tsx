@@ -1,14 +1,14 @@
 import { FooterWidget } from '@/widgets/FooterWidget/FooterWidget';
 import { HeaderWidget } from '@/widgets/Header/HeaderWidget';
+import { LoginWidget } from '@/widgets/LoginWidget/LoginWidget';
 import { MainLayout } from '@/widgets/MainLayout/MainLayout';
-import { MainWidget } from '@/widgets/MainWidget/MainWidget';
 
-export default function MainPage() {
+export function LoginPage() {
   return (
     <>
       <HeaderWidget />
       <MainLayout>
-        <MainWidget />
+        <LoginWidget />
       </MainLayout>
       <FooterWidget />
     </>

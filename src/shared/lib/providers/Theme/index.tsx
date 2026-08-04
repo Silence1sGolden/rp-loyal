@@ -18,20 +18,7 @@ export function ThemeProvider({ children }: { children: ReactNode }) {
   };
 
   useEffect(() => {
-    const preset = localStorage.getItem('theme') as undefined | TTheme;
-
-    if (preset) {
-      switch (preset) {
-        case 'light': {
-          document.documentElement.classList.toggle('dark', false);
-          break;
-        }
-        case 'dark': {
-          document.documentElement.classList.toggle('dark', true);
-          break;
-        }
-      }
-    }
+    document.documentElement.classList.remove('no-transition');
   }, []);
 
   return (

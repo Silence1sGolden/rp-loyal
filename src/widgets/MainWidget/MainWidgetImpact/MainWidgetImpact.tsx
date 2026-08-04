@@ -4,8 +4,8 @@ import Feather from '@/shared/assets/icons/Feather.svg?react';
 import Search from '@/shared/assets/icons/Search.svg?react';
 import { clsx } from '@/shared/utils/utils';
 import style from './MainWidgetImpact.module.scss';
+import { CustomSection } from '../../../shared/ui/CustomSection/CustomSection';
 import { MainWidgetImpactItem } from '../ui/MainWidgetImpactItem/MainWidgetImpactItem';
-import { MainWidgetSection } from '../ui/MainWidgetSection/MainWidgetSection';
 
 type TImpactItem = {
   icon: ReactNode;
@@ -36,13 +36,17 @@ const IMPACTS: TImpactItem[] = [
 
 export function MainWidgetImpact() {
   return (
-    <MainWidgetSection display="flex" variant="secondary">
+    <CustomSection
+      classNameContent={style.content}
+      display="flex"
+      variant="secondary"
+    >
       <h2 className={style.title}>How Inkpact works</h2>
       <ul className={style.list}>
         {IMPACTS.map((item, index) => (
           <MainWidgetImpactItem key={item.title} number={index + 1} {...item} />
         ))}
       </ul>
-    </MainWidgetSection>
+    </CustomSection>
   );
 }

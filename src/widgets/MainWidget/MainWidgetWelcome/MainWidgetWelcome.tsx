@@ -3,8 +3,8 @@ import Arrow from '@/shared/assets/icons/Arrow.svg?react';
 import Users from '@/shared/assets/icons/Users.svg?react';
 import { CustomButton } from '@/shared/ui/CustomButton/CustomButton';
 import style from './MainWidgetWelcome.module.scss';
+import { CustomSection } from '../../../shared/ui/CustomSection/CustomSection';
 import { MainWidgetExample } from '../ui/MainWidgetExample/MainWidgetExample';
-import { MainWidgetSection } from '../ui/MainWidgetSection/MainWidgetSection';
 
 export function MainWidgetWelcome() {
   const navigate = useNavigate();
@@ -18,8 +18,8 @@ export function MainWidgetWelcome() {
   };
 
   return (
-    <MainWidgetSection
-      className={style.section}
+    <CustomSection
+      classNameContent={style.content}
       display="grid"
       variant="primary"
     >
@@ -40,7 +40,7 @@ export function MainWidgetWelcome() {
         </p>
         <div className={style.actions}>
           <CustomButton
-            padding="12x24"
+            padding="10x20"
             variant="primary"
             onClick={handleSotories}
           >
@@ -48,7 +48,7 @@ export function MainWidgetWelcome() {
             <Arrow className={style.arrow} />
           </CustomButton>
           <CustomButton
-            padding="12x24"
+            padding="10x20"
             variant="secondary"
             onClick={handleSignUp}
           >
@@ -57,6 +57,6 @@ export function MainWidgetWelcome() {
         </div>
       </div>
       <MainWidgetExample />
-    </MainWidgetSection>
+    </CustomSection>
   );
 }

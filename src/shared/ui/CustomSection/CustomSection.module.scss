@@ -1,23 +1,23 @@
 .section {
+  display: flex;
+  flex-direction: column;
+
   transition-property: background-color;
   transition-duration: 0.3s;
 
-  &:first-of-type .content {
-    padding: 80px 24px 64px;
-  }
-
   .content {
     max-width: 1152px;
+    width: 100%;
 
     margin-left: auto;
     margin-right: auto;
-
-    padding: 80px 24px;
   }
 }
 
 .flex {
   display: flex;
+  justify-content: center;
+  align-items: center;
   flex-direction: column;
 }
 

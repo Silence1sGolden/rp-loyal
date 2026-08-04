@@ -11,6 +11,10 @@
 }
 
 #root {
+  overflow: hidden auto;
+
+  height: 100vh;
+
   display: flex;
   flex-direction: column;
 
@@ -20,6 +24,10 @@
 
   transition-property: background-color, color;
   transition-duration: .3s;
+}
+
+.no-transition * {
+  transition: none !important;
 }
 
 a,

@@ -1,0 +1,12 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.label {
+  @include font-dmmono;
+  @include t-12-500;
+
+  letter-spacing: 0.025em;
+  text-transform: uppercase;
+
+  color: var(--muted-foreground);
+}

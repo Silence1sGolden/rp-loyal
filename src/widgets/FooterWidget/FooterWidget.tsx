@@ -1,6 +1,6 @@
-import style from './Footer.module.scss';
+import style from './FooterWidget.module.scss';
 
-export function Footer() {
+export function FooterWidget() {
   return (
     <footer className={style.footer}>
       <span className={style.me}>mute_0_0</span>

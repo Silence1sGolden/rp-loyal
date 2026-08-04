@@ -1,0 +1,30 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.caption {
+  @include font-dmsans;
+  @include t-12-400;
+
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+
+  gap: 8px;
+
+  padding: 8px 12px;
+  border: 1px solid color-mix(in srgb, var(--destructive) 20%, transparent);
+  border-radius: 8px;
+
+  color: var(--destructive);
+  background-color: color-mix(in srgb, var(--destructive) 8%, transparent);
+
+  transition-property: color, background-color, border;
+  transition-duration: 0.3s;
+
+  .icon {
+    width: 16px;
+    height: 16px;
+
+    flex-shrink: 0;
+  }
+}

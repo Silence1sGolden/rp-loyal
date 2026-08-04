@@ -38,6 +38,11 @@
   font-weight: 400;
 }
 
+@mixin t-11-400 {
+  font-size: 11px;
+  font-weight: 400;
+}
+
 @mixin t-10-500 {
   font-size: 10px;
   font-weight: 500;
