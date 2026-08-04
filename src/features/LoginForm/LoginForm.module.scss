@@ -1,0 +1,54 @@
+.form {
+  width: 100%;
+
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+
+  .block {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .inputContainer {
+    width: 100%;
+
+    position: relative;
+
+    .input {
+      width: 100%;
+
+      padding-left: 28px;
+    }
+
+    .rightIcon {
+      position: absolute;
+      top: calc(50% - 8px);
+      right: 8px;
+    }
+
+    .leftIcon {
+      position: absolute;
+      top: calc(50% - 8px);
+      left: 8px;
+    }
+
+    .eye {
+      cursor: pointer;
+    }
+  }
+
+  .submit {
+    justify-content: center;
+  }
+}
+
+.icon {
+  width: 16px;
+  height: 16px;
+
+  flex-shrink: 0;
+
+  color: var(--muted-foreground);
+}

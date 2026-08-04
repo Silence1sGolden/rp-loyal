@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router';
 import ChevronLeft from '@/shared/assets/icons/ChevronLeft.svg?react';
 import { CustomButton } from '@/shared/ui/CustomButton/CustomButton';
 import style from './MainWidgetJoinUs.module.scss';
-import { MainWidgetSection } from '../ui/MainWidgetSection/MainWidgetSection';
+import { CustomSection } from '../../../shared/ui/CustomSection/CustomSection';
 
 export function MainWidgetJoinUs() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ export function MainWidgetJoinUs() {
   };
 
   return (
-    <MainWidgetSection
-      className={style.content}
+    <CustomSection
+      classNameContent={style.content}
       display="flex"
       variant="secondary"
     >
@@ -22,10 +22,10 @@ export function MainWidgetJoinUs() {
         Join writers who prefer craft over chaos. No dice, no stats — just words
         that matter.
       </p>
-      <CustomButton padding="12x24" variant="primary" onClick={handleJoinUs}>
+      <CustomButton padding="10x20" variant="primary" onClick={handleJoinUs}>
         Find a story
         <ChevronLeft className={style.icon} />
       </CustomButton>
-    </MainWidgetSection>
+    </CustomSection>
   );
 }

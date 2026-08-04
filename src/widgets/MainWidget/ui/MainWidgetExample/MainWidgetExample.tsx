@@ -1,9 +1,9 @@
 import { Message } from '@/entities/chat/ui/Message/Message';
-import style from './MainWidgetExample.module.scss';
+import { CustomContainer } from '@/shared/ui/CustomContainer/CustomContainer';
 
 export function MainWidgetExample() {
   return (
-    <div className={style.example}>
+    <CustomContainer>
       <Message
         type="event"
         text="The bookshop is quiet when you arrive. A bell sounds, settles."
@@ -21,6 +21,6 @@ export function MainWidgetExample() {
         text="He doesn't ask how she knew whose they were."
         me={true}
       />
-    </div>
+    </CustomContainer>
   );
 }

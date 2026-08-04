@@ -9,7 +9,7 @@ import style from './CustomButton.module.scss';
 
 type TCustomButtonProps = {
   variant?: 'primary' | 'secondary' | 'empty';
-  padding?: '6x16' | '6x6' | '12x24';
+  padding?: '6x16' | '6x6' | '10x20';
   className?: string;
 } & ButtonHTMLAttributes<HTMLButtonElement>;
 
