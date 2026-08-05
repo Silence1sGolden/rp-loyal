@@ -1,16 +1,9 @@
-import { useNavigate } from 'react-router';
 import ChevronLeft from '@/shared/assets/icons/ChevronLeft.svg?react';
-import { CustomButton } from '@/shared/ui/CustomButton/CustomButton';
+import { CustomNavLink } from '@/shared/ui/CustomNavLink/CustomNavLink';
 import style from './MainWidgetJoinUs.module.scss';
 import { CustomSection } from '../../../shared/ui/CustomSection/CustomSection';
 
 export function MainWidgetJoinUs() {
-  const navigate = useNavigate();
-
-  const handleJoinUs = () => {
-    navigate('/registration');
-  };
-
   return (
     <CustomSection
       classNameContent={style.content}
@@ -22,10 +15,15 @@ export function MainWidgetJoinUs() {
         Join writers who prefer craft over chaos. No dice, no stats — just words
         that matter.
       </p>
-      <CustomButton padding="10x20" variant="primary" onClick={handleJoinUs}>
+      <CustomNavLink
+        to="/registration"
+        padding="10x20"
+        fontSize="14"
+        variant="primary"
+      >
         Find a story
         <ChevronLeft className={style.icon} />
-      </CustomButton>
+      </CustomNavLink>
     </CustomSection>
   );
 }

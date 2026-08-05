@@ -1,22 +1,11 @@
-import { useNavigate } from 'react-router';
 import Arrow from '@/shared/assets/icons/Arrow.svg?react';
 import Users from '@/shared/assets/icons/Users.svg?react';
-import { CustomButton } from '@/shared/ui/CustomButton/CustomButton';
+import { CustomNavLink } from '@/shared/ui/CustomNavLink/CustomNavLink';
 import style from './MainWidgetWelcome.module.scss';
 import { CustomSection } from '../../../shared/ui/CustomSection/CustomSection';
 import { MainWidgetExample } from '../ui/MainWidgetExample/MainWidgetExample';
 
 export function MainWidgetWelcome() {
-  const navigate = useNavigate();
-
-  const handleSotories = () => {
-    navigate('/stories');
-  };
-
-  const handleSignUp = () => {
-    navigate('/registration');
-  };
-
   return (
     <CustomSection
       classNameContent={style.content}
@@ -39,21 +28,23 @@ export function MainWidgetWelcome() {
           alone — message by message.
         </p>
         <div className={style.actions}>
-          <CustomButton
-            padding="10x20"
+          <CustomNavLink
+            to="/stories"
             variant="primary"
-            onClick={handleSotories}
+            padding="10x20"
+            fontSize="14"
           >
             Browse stories
-            <Arrow className={style.arrow} />
-          </CustomButton>
-          <CustomButton
-            padding="10x20"
+          </CustomNavLink>
+          <CustomNavLink
+            to="/registration"
             variant="secondary"
-            onClick={handleSignUp}
+            padding="10x20"
+            fontSize="14"
           >
             Create an account
-          </CustomButton>
+            <Arrow className={style.arrow} />
+          </CustomNavLink>
         </div>
       </div>
       <MainWidgetExample />

@@ -64,6 +64,7 @@ export function LoginForm() {
                 id="username"
                 name="username"
                 type="text"
+                placeholder="your_username"
               />
             </div>
           )}
@@ -90,6 +91,7 @@ export function LoginForm() {
                 type={hidePass ? 'password' : 'text'}
                 id="password"
                 name="password"
+                placeholder="••••••••"
               />
               {hidePass ? (
                 <Eye

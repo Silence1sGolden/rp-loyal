@@ -92,6 +92,7 @@ export function RegistrationForm() {
                 name="username"
                 id="username"
                 autoComplete="username"
+                placeholder="your_username"
               />
             </div>
           )}
@@ -117,6 +118,7 @@ export function RegistrationForm() {
                 name="email"
                 id="email"
                 autoComplete="email"
+                placeholder="you@example.com"
               />
             </div>
           )}
@@ -139,6 +141,7 @@ export function RegistrationForm() {
                 type={hidePass ? 'password' : 'text'}
                 name="password"
                 id="password"
+                placeholder="At least 8 characters"
               />
               {hidePass ? (
                 <Eye
@@ -182,6 +185,7 @@ export function RegistrationForm() {
                 type={hideRepPass ? 'password' : 'text'}
                 name="repeatPassword"
                 id="repeatPassword"
+                placeholder="Repeat your password"
               />
               {hideRepPass ? (
                 <Eye
@@ -210,6 +214,7 @@ export function RegistrationForm() {
               ref={ref}
               checked={value}
               onChange={() => onChange(!value)}
+              readOnly={true}
             />
             <p className={style.label}>
               I confirm I am{' '}
@@ -233,6 +238,7 @@ export function RegistrationForm() {
               ref={ref}
               checked={value}
               onChange={() => onChange(!value)}
+              readOnly={true}
             />
             <p className={style.label}>
               I've read and agree to Inkpact's
@@ -260,6 +266,7 @@ export function RegistrationForm() {
               ref={ref}
               checked={value}
               onChange={() => onChange(!value)}
+              readOnly={true}
             />
             <p className={style.label}>
               I've read and agree to Inkpact's
