@@ -1,0 +1,43 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.container {
+  gap: 0px;
+
+  .status {
+    @include font-dmsans;
+    @include t-12-400;
+
+    display: flex;
+    align-items: center;
+    gap: 6px;
+
+    margin: 12px 0px 6px;
+
+    color: var(--foreground);
+
+    .dot {
+      display: inline-block;
+
+      width: 8px;
+      height: 8px;
+
+      border-radius: 999px;
+    }
+
+    .active {
+      background-color: var(--accent);
+    }
+
+    .inactive {
+      background-color: var(--destructive);
+    }
+  }
+
+  .time {
+    @include font-dmsans;
+    @include t-12-400;
+
+    color: var(--muted-foreground);
+  }
+}

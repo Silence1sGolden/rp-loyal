@@ -3,7 +3,7 @@ import { clsx } from '@/shared/utils/utils';
 import style from './CustomSection.module.scss';
 
 type TCustomSectionProps = {
-  variant: 'primary' | 'secondary';
+  variant?: 'primary' | 'secondary';
   display?: 'flex' | 'grid';
   classNameContent?: string;
   classNameSection?: string;
@@ -11,7 +11,7 @@ type TCustomSectionProps = {
 };
 
 export function CustomSection({
-  variant,
+  variant = 'primary',
   display = 'flex',
   classNameContent,
   classNameSection,

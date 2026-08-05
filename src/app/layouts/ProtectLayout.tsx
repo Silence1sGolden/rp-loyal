@@ -8,10 +8,10 @@ export default function ProtectLayout({ forAuth = true }: TProtectLayout) {
   const currentUser = true;
 
   if (currentUser && forAuth) {
-    return <Navigate to={`/${currentUser}`} />;
+    return <Navigate to="profile" />;
   }
 
-  if (!currentUser) {
+  if (!currentUser && !forAuth) {
     return <Navigate to="login" />;
   }
 

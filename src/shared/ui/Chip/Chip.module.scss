@@ -1,0 +1,23 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.chip {
+  @include font-dmsans;
+  @include t-11-400;
+
+  padding: 4px 10px;
+  border-width: 1px;
+  border-style: solid;
+  border-color: var(--border);
+  border-radius: 999px;
+
+  background-color: var(--secondary);
+  color: var(--secondary-foreground);
+
+  transition-property: color, background-color, border-color;
+  transition-duration: 0.3s;
+
+  &:hover {
+    color: var(--foreground);
+  }
+}

@@ -1,0 +1,46 @@
+@use '@/shared/assets/styles/mixins/fonts' as *;
+@use '@/shared/assets/styles/mixins/texts' as *;
+
+.container {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 0px;
+
+  padding: 24px 12px 42px;
+
+  .avatar {
+    width: 100px;
+    height: 100px;
+
+    margin-bottom: 16px;
+    border: 1px solid var(--muted);
+    border-radius: 999px;
+
+    transition-property: border;
+    transition-duration: 0.3s;
+  }
+
+  .username {
+    @include font-lora;
+    @include t-20-600;
+
+    margin-bottom: 6px;
+
+    color: var(--foreground);
+  }
+
+  .member {
+    @include font-dmsans;
+    @include t-12-400;
+
+    margin-bottom: 16px;
+
+    color: var(--muted-foreground);
+  }
+
+  .stats {
+    display: flex;
+    gap: 16px;
+  }
+}
