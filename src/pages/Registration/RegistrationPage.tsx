@@ -1,13 +1,13 @@
 import { HeaderWidget } from '@/widgets/Header/HeaderWidget';
 import { MainLayout } from '@/widgets/MainLayout/MainLayout';
-import { MainWidget } from '@/widgets/MainWidget/MainWidget';
+import { RegistrationWidget } from '@/widgets/RegistrationWidget/RegistrationWidget';
 
-export default function MainPage() {
+export function RegistrationPage() {
   return (
     <>
       <HeaderWidget />
       <MainLayout>
-        <MainWidget />
+        <RegistrationWidget />
       </MainLayout>
     </>
   );

@@ -3,7 +3,7 @@ import { clsx } from '@/shared/utils/utils';
 import style from './CustomContainer.module.scss';
 
 type TCustomContainerProps = {
-  children: ReactNode;
+  children?: ReactNode;
   className?: string;
 };
 

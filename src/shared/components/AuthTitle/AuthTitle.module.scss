@@ -1,16 +1,23 @@
 @use '@/shared/assets/styles/mixins/fonts' as *;
 @use '@/shared/assets/styles/mixins/texts' as *;
 
-.footer {
+.container {
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
 
-  padding: 24px;
+  margin-bottom: 32px;
 
-  .me {
-    @include t-14-400;
+  .title {
     @include font-lora;
+    @include t-24-600;
+
+    margin-bottom: 4px;
+  }
+
+  .subtitle {
+    @include font-dmsans;
+    @include t-14-400;
 
     color: var(--muted-foreground);
   }

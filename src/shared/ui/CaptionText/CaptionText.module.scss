@@ -1,0 +1,14 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.caption {
+  @include font-dmsans;
+  @include t-11-400;
+
+  gap: 8px;
+
+  color: var(--muted-foreground);
+
+  transition-property: color;
+  transition-duration: 0.3s;
+}

@@ -14,7 +14,7 @@ export function MainWidgetWelcome() {
   };
 
   const handleSignUp = () => {
-    navigate('/registry');
+    navigate('/registration');
   };
 
   return (

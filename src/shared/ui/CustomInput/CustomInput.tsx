@@ -6,7 +6,7 @@ type TCustomInputProps = {
   className?: string;
 } & InputHTMLAttributes<HTMLInputElement>;
 
-export function Component(
+function Component(
   { className, ...other }: TCustomInputProps,
   ref: ForwardedRef<HTMLInputElement>
 ) {
