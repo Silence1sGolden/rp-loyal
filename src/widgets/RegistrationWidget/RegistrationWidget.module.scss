@@ -1,0 +1,51 @@
+@use '@/shared/assets/styles/mixins/fonts' as *;
+@use '@/shared/assets/styles/mixins/texts' as *;
+
+.section {
+  height: 100%;
+
+  align-items: center;
+
+  padding: 56px 0px;
+
+  .icon {
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    margin-bottom: 12px;
+
+    color: var(--primary);
+  }
+
+  .container {
+    width: 100%;
+    max-width: 384px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .signin {
+    @include font-dmsans;
+    @include t-11-400;
+
+    color: var(--muted-foreground);
+
+    .link {
+      @include font-dmsans;
+      @include t-14-500;
+
+      color: var(--primary);
+
+      &:hover {
+        cursor: pointer;
+
+        text-decoration: underline;
+      }
+    }
+  }
+}

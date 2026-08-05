@@ -8,6 +8,17 @@
 
   padding: 64px 0px;
 
+  .icon {
+    width: 28px;
+    height: 28px;
+
+    flex-shrink: 0;
+
+    margin-bottom: 12px;
+
+    color: var(--primary);
+  }
+
   .container {
     width: 100%;
     max-width: 384px;

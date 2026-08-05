@@ -8,7 +8,7 @@ export function MainWidgetJoinUs() {
   const navigate = useNavigate();
 
   const handleJoinUs = () => {
-    navigate('/registry');
+    navigate('/registration');
   };
 
   return (
