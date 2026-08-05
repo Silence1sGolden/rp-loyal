@@ -1,0 +1,25 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.stat {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  gap: 6px;
+
+  .count {
+    @include font-dmsans;
+    @include t-14-500;
+
+    color: var(--foreground);
+  }
+
+  .description {
+    @include font-dmsans;
+    @include t-11-400;
+
+    text-transform: capitalize;
+
+    color: var(--muted-foreground);
+  }
+}

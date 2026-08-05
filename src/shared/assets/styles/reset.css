@@ -8,10 +8,14 @@
 *::before,
 *::after {
   box-sizing: border-box;
+
+  scrollbar-width: thin;
+  scrollbar-color: var(--muted-foreground) var(--muted);
+  scroll-behavior: smooth;
 }
 
 #root {
-  overflow: hidden auto;
+  overflow: hidden;
 
   height: 100vh;
 

@@ -8,6 +8,11 @@
   font-weight: 600;
 }
 
+@mixin t-20-600 {
+  font-size: 20px;
+  font-weight: 600;
+}
+
 @mixin t-16-600 {
   font-size: 16px;
   font-weight: 600;
