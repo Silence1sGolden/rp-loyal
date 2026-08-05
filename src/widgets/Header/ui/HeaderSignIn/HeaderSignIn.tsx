@@ -1,19 +1,14 @@
-import { useNavigate } from 'react-router';
 import Moon from '@/shared/assets/icons/Moon.svg?react';
 import Sun from '@/shared/assets/icons/Sun.svg?react';
 import { useTheme } from '@/shared/lib/hooks/useTheme/useTheme';
 import { CustomButton } from '@/shared/ui/CustomButton/CustomButton';
+import { CustomNavLink } from '@/shared/ui/CustomNavLink/CustomNavLink';
 import style from './HeaderSignIn.module.scss';
 
 export function HeaderSignIn() {
   const { theme, toggleTheme } = useTheme();
-  const navigate = useNavigate();
 
   const isDark = theme === 'dark';
-
-  const handleSingIn = () => {
-    navigate('/login');
-  };
 
   return (
     <div className={style.content}>
@@ -24,9 +19,12 @@ export function HeaderSignIn() {
           <Moon className={style.icon} />
         )}
       </CustomButton>
-      <CustomButton variant="primary" padding="6x16" onClick={handleSingIn}>
+      <CustomNavLink to="/login" variant="empty">
         Sign In
-      </CustomButton>
+      </CustomNavLink>
+      <CustomNavLink to="/registration" variant="primary">
+        Join free
+      </CustomNavLink>
     </div>
   );
 }

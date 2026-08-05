@@ -1,0 +1,77 @@
+@use '@/shared/assets/styles/mixins/texts' as *;
+@use '@/shared/assets/styles/mixins/fonts' as *;
+
+.link {
+  @include font-dmsans;
+
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  border: 1px solid transparent;
+  border-radius: 8px;
+
+  line-height: 1.5;
+  color: var(--muted-foreground);
+
+  transition-property: color, background-color;
+  transition-duration: 0.3s;
+}
+
+.primary {
+  background-color: var(--primary);
+  color: var(--primary-foreground);
+
+  &.active {
+    opacity: 0.9;
+  }
+
+  &:hover {
+    opacity: 0.9;
+  }
+}
+
+.secondary {
+  background-color: transparent;
+  color: var(--foreground);
+  border-color: var(--border);
+
+  &.active {
+    background-color: var(--muted);
+  }
+
+  &:hover {
+    background-color: var(--muted);
+  }
+}
+
+.empty {
+  background-color: transparent;
+  color: var(--muted-foreground);
+
+  &.active {
+    color: var(--foreground);
+    background-color: var(--muted);
+  }
+
+  &:hover {
+    background-color: var(--muted);
+    color: var(--foreground);
+  }
+}
+
+.padding_10x20 {
+  padding: 10px 20px;
+}
+
+.padding_6x12 {
+  padding: 6px 12px;
+}
+
+.font_12 {
+  @include t-12-500;
+}
+
+.font_14 {
+  @include t-14-500;
+}
